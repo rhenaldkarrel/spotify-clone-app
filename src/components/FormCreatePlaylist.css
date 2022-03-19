@@ -1,0 +1,30 @@
+input,
+textarea {
+	display: block;
+	margin-top: 0.5rem;
+	padding: 12px;
+	border-radius: 0.3rem;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	width: 100%;
+	min-width: 16rem;
+}
+
+textarea {
+	resize: vertical;
+}
+
+.form-group:not(:first-child) {
+	margin-top: 1.5rem;
+}
+
+.form-group button {
+	background-color: #1ed760;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 1rem;
+	width: 100%;
+	cursor: pointer;
+}

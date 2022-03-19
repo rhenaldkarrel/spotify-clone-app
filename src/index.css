@@ -1,0 +1,16 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: "SF UI Display", sans-serif;
+	background-color: #f7f7f7;
+	color: #444;
+	padding: 1rem;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
