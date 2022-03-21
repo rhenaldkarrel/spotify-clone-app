@@ -1,4 +1,4 @@
-.open-album button {
+.select-song button {
 	background-color: #1ed760;
 	color: white;
 	text-transform: uppercase;
@@ -12,10 +12,13 @@
 
 #playlists .playlist-card {
 	margin-bottom: 3rem;
+	width: 20rem;
 }
 
 #playlists .content {
-	width: 200px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #playlists .card .img {
@@ -39,4 +42,9 @@
 
 #playlists .card .content > div:not(:last-child) {
 	margin-bottom: 0.8rem;
+}
+
+#playlists .album-title {
+	font-size: 1.38rem;
+	font-weight: semi-bold;
 }
