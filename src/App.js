@@ -1,14 +1,8 @@
-import Playlists from "./components/Playlists";
-import FormCreatePlaylist from "./components/FormCreatePlaylist";
-import data from "./data";
+import React from "react";
+import Home from "./pages/home/index";
 
 const App = () => {
-	return (
-		<div>
-			<FormCreatePlaylist />
-			<Playlists data={data} />
-		</div>
-	);
+	return <Home />;
 };
 
 export default App;
