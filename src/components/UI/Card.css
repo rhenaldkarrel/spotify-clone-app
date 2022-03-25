@@ -1,11 +1,7 @@
 .card {
-	background-color: white;
+	background-color: hsl(var(--bg-card));
 	width: fit-content;
 	padding: 1.5rem;
 	border-radius: 1rem;
-	margin-bottom: 1rem;
-	margin-left: auto;
-	margin-right: auto;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 2em hsl(var(--clr-black) / 0.5);
 }

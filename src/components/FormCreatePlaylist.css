@@ -1,16 +1,43 @@
+.form-container {
+	padding-block: 2rem;
+	color: hsl(var(--clr-text));
+	background: linear-gradient(
+		to bottom,
+		hsl(var(--clr-grey) / 0.5),
+		hsl(var(--bg-body))
+	);
+}
+
+.form-card {
+	margin-inline: auto;
+	width: 24rem;
+}
+
 input,
 textarea {
 	display: block;
 	margin-top: 0.5rem;
-	padding: 12px;
+	padding: 0.75rem;
 	border-radius: 0.3rem;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	border: none;
 	width: 100%;
 	min-width: 16rem;
+	background-color: hsl(var(--bg-formEls) / 0.5);
+	color: hsl(var(--clr-text));
 }
 
 textarea {
 	resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+	outline: none;
+	background-color: hsl(var(--bg-formEls) / 1);
+}
+
+.form-card form {
+	margin-top: 1.5rem;
 }
 
 .form-group:not(:first-child) {
@@ -18,13 +45,13 @@ textarea {
 }
 
 .form-group button {
-	background-color: #1ed760;
-	color: white;
+	background-color: hsl(var(--clr-primary));
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	border: none;
-	padding: 10px 20px;
-	border-radius: 1rem;
+	padding: 1em 2em;
+	border-radius: 0.3rem;
 	width: 100%;
 	cursor: pointer;
+	color: hsl(var(--clr-text));
 }

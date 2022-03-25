@@ -1,0 +1,56 @@
+.select-song button {
+	background-color: hsl(var(--clr-primary));
+	color: hsl(var(--clr-text));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	padding: 1em 2em;
+	border-radius: 0.3rem;
+	width: 100%;
+	cursor: pointer;
+}
+
+.track-card {
+	width: 22rem;
+	max-width: 22rem;
+	height: 100%;
+}
+
+.track-card .content {
+	display: grid;
+	height: 100%;
+}
+
+.track-card .img {
+	width: 100%;
+}
+
+.track-card .artist {
+	font-size: 1.2rem;
+}
+
+.track-card .img img {
+	width: 100%;
+	border-radius: 0.3rem;
+}
+
+.track-card .release-date {
+	font-size: 0.6rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: hsl(var(--clr-text) / 0.4);
+}
+
+.track-card .content > div:where(:not(:last-child)) {
+	margin-bottom: 1rem;
+}
+
+.track-card:hover {
+	background-color: hsl(var(--clr-grey) / 0.3);
+}
+
+.track-card .album-title {
+	font-size: 1.38rem;
+	font-weight: semi-bold;
+	color: hsl(var(--clr-text) / 0.5);
+}

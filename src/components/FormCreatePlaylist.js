@@ -9,8 +9,8 @@ const FormCreatePlaylist = () => {
 	};
 
 	return (
-		<Card>
-			<div class='content'>
+		<div class='form-container'>
+			<Card className='form-card'>
 				<div class='title'>
 					<h2>Create Playlist</h2>
 				</div>
@@ -35,8 +35,8 @@ const FormCreatePlaylist = () => {
 						<button id='submit'>Create</button>
 					</div>
 				</form>
-			</div>
-		</Card>
+			</Card>
+		</div>
 	);
 };
 

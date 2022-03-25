@@ -1,11 +1,11 @@
 import React from "react";
 
 import Card from "./UI/Card";
-import "./PlaylistCard.css";
+import "./TrackCard.css";
 
-const PlaylistCard = (props) => {
+const TrackCard = (props) => {
 	return (
-		<Card className='playlist-card'>
+		<Card className='track-card'>
 			<div className='content'>
 				<div className='img'>
 					<img src={props.img} alt='Album' />
@@ -13,12 +13,14 @@ const PlaylistCard = (props) => {
 				<div className='song-title'>
 					<h2>{props.song}</h2>
 				</div>
-				<div className='album-title'>{props.album}</div>
+				<div className='album-title'>
+					<p>{props.album}</p>
+				</div>
 				<div className='artist'>
 					<p>{props.artist}</p>
 				</div>
 				<div className='release-date'>
-					<p>Created at {props.createdAt}</p>
+					<p>Published at {props.createdAt}</p>
 				</div>
 				<div className='select-song'>
 					<button>Select</button>
@@ -28,4 +30,4 @@ const PlaylistCard = (props) => {
 	);
 };
 
-export default PlaylistCard;
+export default TrackCard;
