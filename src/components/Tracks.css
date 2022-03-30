@@ -1,3 +1,28 @@
+.welcome {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: linear-gradient(
+		to bottom,
+		hsl(var(--clr-grey) / 0.5),
+		hsl(var(--bg-body))
+	);
+}
+
+/* Navbar */
+.nav-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-inline: 3rem;
+	padding-block: 1rem;
+	box-shadow: 0 0 3em hsl(var(--clr-black) / 0.5);
+}
+
+/* Serach Tracks */
 #tracks {
 	padding: 2rem;
 }
@@ -10,6 +35,7 @@
 #tracks .search-container {
 	display: flex;
 	justify-content: center;
+	margin-bottom: 4rem;
 }
 
 #tracks form {
@@ -24,6 +50,33 @@
 	border-bottom-right-radius: 0;
 }
 
+/* Layout */
+#tracks #results {
+	display: grid;
+	justify-items: center;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	gap: 3rem;
+	max-width: 90vw;
+	margin-inline: auto;
+}
+
+/* Utilities */
+.btn-auth {
+	background-color: hsl(var(--clr-primary));
+	color: hsl(var(--clr-text));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	padding: 1em 2em;
+	border-radius: 0.3rem;
+	cursor: pointer;
+}
+
+.btn-logout {
+	padding: 1em 1.5em;
+	font-size: 0.75rem;
+}
+
 #tracks form button {
 	background-color: hsl(var(--clr-primary));
 	text-transform: uppercase;
@@ -35,24 +88,4 @@
 	color: hsl(var(--clr-text));
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
-}
-
-#tracks #results {
-	display: grid;
-	justify-items: center;
-	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-	gap: 3rem;
-	max-width: 90vw;
-	margin-inline: auto;
-}
-
-.btn-auth {
-	background-color: hsl(var(--clr-primary));
-	color: hsl(var(--clr-text));
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	border: none;
-	padding: 1em 2em;
-	border-radius: 0.3rem;
-	cursor: pointer;
 }

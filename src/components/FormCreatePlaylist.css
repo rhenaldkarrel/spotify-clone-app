@@ -3,7 +3,7 @@
 	color: hsl(var(--clr-text));
 	background: linear-gradient(
 		to bottom,
-		hsl(var(--clr-grey) / 0.5),
+		hsl(var(--clr-grey) / 0.15),
 		hsl(var(--bg-body))
 	);
 }

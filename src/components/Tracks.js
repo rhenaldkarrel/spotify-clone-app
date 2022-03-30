@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import TrackCard from "./TrackCard";
+import FormCreatePlaylist from "./FormCreatePlaylist";
+
 import "./Tracks.css";
+import "./FormCreatePlaylist.css";
 
 const Tracks = () => {
 	const [tracks, setTracks] = useState([]);
@@ -67,34 +70,45 @@ const Tracks = () => {
 	));
 
 	return (
-		<div id='tracks'>
-			<h1 className='title'>Search Tracks</h1>
-			<div className='search-container'>
-				{!token ? (
+		<>
+			{!token ? (
+				<div className='welcome'>
+					<h1>&#x1F44B;Welcome to Rhenald's Spotify Clone App!</h1>
 					<a
 						href={`${config.authorize_url}?client_id=${config.client_id}&response_type=token&redirect_uri=${config.redirect_uri}&scope=${config.scope}`}
 						className='btn-auth'>
 						Login
 					</a>
-				) : (
-					<>
-						<button className='btn-auth' onClick={handleLogout}>
-							Logout
-						</button>
-						<form action='#' onSubmit={handleSubmit}>
-							<input
-								className='input-search'
-								type='text'
-								placeholder='Type a playlist name...'
-								onChange={handleChange}
-							/>
-							<button>Search</button>
-						</form>
-					</>
-				)}
-			</div>
-			<div id='results'>{track}</div>
-		</div>
+				</div>
+			) : (
+				<>
+					<nav>
+						<div className='nav-container'>
+							<h1>Spotify Clone</h1>
+							<button className='btn-auth btn-logout' onClick={handleLogout}>
+								Logout
+							</button>
+						</div>
+					</nav>
+					<FormCreatePlaylist />
+					<div id='tracks'>
+						<h1 className='title'>Search Tracks</h1>
+						<div className='search-container'>
+							<form action='#' onSubmit={handleSubmit}>
+								<input
+									className='input-search'
+									type='text'
+									placeholder='Type a track title...'
+									onChange={handleChange}
+								/>
+								<button>Search</button>
+							</form>
+						</div>
+						<div id='results'>{track}</div>
+					</div>
+				</>
+			)}
+		</>
 	);
 };
 
