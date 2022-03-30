@@ -29,6 +29,10 @@ picture {
 	margin: 0;
 }
 
+a {
+	text-decoration: none;
+}
+
 img,
 picture {
 	max-width: 100%;
@@ -61,4 +65,15 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
+}
+
+input,
+textarea {
+	padding: 0.75rem;
+	border-radius: 0.3rem;
+	border: none;
+	width: 100%;
+	min-width: 16rem;
+	background-color: hsl(var(--bg-formEls) / 0.5);
+	color: hsl(var(--clr-text));
 }

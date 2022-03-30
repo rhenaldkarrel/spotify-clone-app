@@ -9,14 +9,14 @@ const FormCreatePlaylist = () => {
 	};
 
 	return (
-		<div class='form-container'>
+		<div className='form-container'>
 			<Card className='form-card'>
-				<div class='title'>
+				<div className='title'>
 					<h2>Create Playlist</h2>
 				</div>
-				<form class='form' onSubmit={() => handleSubmit()}>
-					<div class='form-group'>
-						<label for='title'>Title</label>
+				<form className='form' onSubmit={() => handleSubmit()}>
+					<div className='form-group'>
+						<label htmlFor='title'>Title</label>
 						<input
 							type='text'
 							id='title'
@@ -24,14 +24,14 @@ const FormCreatePlaylist = () => {
 							placeholder='Playlist Title'
 						/>
 					</div>
-					<div class='form-group'>
-						<label for='desc'>Description</label>
+					<div className='form-group'>
+						<label htmlFor='desc'>Description</label>
 						<textarea
 							id='desc'
 							required
 							placeholder='Playlist Description'></textarea>
 					</div>
-					<div class='form-group'>
+					<div className='form-group'>
 						<button id='submit'>Create</button>
 					</div>
 				</form>

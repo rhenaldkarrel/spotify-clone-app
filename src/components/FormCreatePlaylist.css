@@ -13,20 +13,14 @@
 	width: 24rem;
 }
 
-input,
-textarea {
+.form-card input,
+.form-card textarea {
 	display: block;
 	margin-top: 0.5rem;
-	padding: 0.75rem;
-	border-radius: 0.3rem;
-	border: none;
-	width: 100%;
-	min-width: 16rem;
-	background-color: hsl(var(--bg-formEls) / 0.5);
-	color: hsl(var(--clr-text));
 }
 
-textarea {
+.form-card textarea {
+	min-height: 4rem;
 	resize: vertical;
 }
 
