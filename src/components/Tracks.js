@@ -51,10 +51,9 @@ const Tracks = () => {
 		setTracks(data);
 	};
 
-	// Destroy token and empty the result
+	// Destroy token
 	const handleLogout = () => {
 		setToken("");
-		document.getElementById("results").innerHTML = "";
 	};
 
 	// map the tracks to TrackCard component
