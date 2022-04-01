@@ -8,10 +8,10 @@ import "./FormCreatePlaylist.css";
 
 const Tracks = () => {
 	const [tracks, setTracks] = useState([]);
-	const [selectedTracks, setSelectedTracks] = useState([]);
 	const [keyword, setKeyword] = useState("");
 	const [token, setToken] = useState("");
 	const [show, setShow] = useState(false);
+	const [selectedTracks, setSelectedTracks] = useState([]);
 
 	// Spotify API Configuration
 	const config = {
@@ -61,11 +61,11 @@ const Tracks = () => {
 	};
 
 	const handleSelect = (track) => {
-		if (!selectedTracks.includes(track.id)) {
+		if (!selectedTracks.includes(track)) {
 			setSelectedTracks([...selectedTracks, track]);
 		} else {
 			setSelectedTracks(
-				selectedTracks.filter((removedTrack) => removedTrack.id !== track.id)
+				setSelectedTracks(selectedTracks.filter((id) => id !== track))
 			);
 		}
 	};
@@ -79,8 +79,8 @@ const Tracks = () => {
 			album={track.album.name}
 			img={track.album.images[0].url}
 			createdAt={track.album.release_date}
-			// onselect={handleSelect(track)}
-			// selected={selectedTracks.includes(track.id)}
+			onselect={handleSelect(track.id)}
+			selected={selectedTracks.includes(track.id)}
 		/>
 	));
 
