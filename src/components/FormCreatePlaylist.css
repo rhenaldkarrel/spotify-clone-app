@@ -1,11 +1,16 @@
 .form-container {
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	display: grid;
+	place-items: center;
 	padding-block: 2rem;
 	color: hsl(var(--clr-text));
-	background: linear-gradient(
-		to bottom,
-		hsl(var(--clr-grey) / 0.15),
-		hsl(var(--bg-body))
-	);
+	background: hsl(var(--bg-formEls) / 0.8);
 }
 
 .form-card {
@@ -22,6 +27,11 @@
 .form-card textarea {
 	min-height: 4rem;
 	resize: vertical;
+}
+
+.form-card .title {
+	display: flex;
+	justify-content: space-between;
 }
 
 input:focus,
@@ -46,6 +56,13 @@ textarea:focus {
 	padding: 1em 2em;
 	border-radius: 0.3rem;
 	width: 100%;
+	cursor: pointer;
+	color: hsl(var(--clr-text));
+}
+
+.form-card .title .btn-close {
+	background-color: transparent;
+	border: none;
 	cursor: pointer;
 	color: hsl(var(--clr-text));
 }

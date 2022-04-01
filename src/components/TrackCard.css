@@ -1,32 +1,38 @@
-.select-song button {
-	background-color: hsl(var(--clr-primary));
-	color: hsl(var(--clr-text));
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	border: none;
-	padding: 1em 2em;
-	border-radius: 0.3rem;
-	width: 100%;
-	cursor: pointer;
-}
-
+/* Layout */
 .track-card {
-	width: 22rem;
-	max-width: 22rem;
-	height: 100%;
-}
-
-.track-card .content {
-	display: grid;
-	height: 100%;
-}
-
-.track-card .img {
 	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	padding-block: 0.5rem;
+	--radius: 0.5rem;
+}
+
+.track-card .track-informations {
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.track-card .option {
+	width: 7rem;
+}
+
+/* Contents */
+.track-card .img {
+	width: 3.5rem;
+}
+
+.track-card .song-title {
+	font-size: 1rem;
+	margin-bottom: 0.4rem;
+	font-weight: bold;
 }
 
 .track-card .artist {
-	font-size: 1.2rem;
+	font-size: 0.88rem;
+	color: hsl(var(--clr-text) / 0.5);
 }
 
 .track-card .img img {
@@ -38,7 +44,7 @@
 	font-size: 0.6rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	color: hsl(var(--clr-text) / 0.4);
+	color: hsl(var(--clr-text) / 0.5);
 }
 
 .track-card .content > div:where(:not(:last-child)) {
@@ -50,7 +56,44 @@
 }
 
 .track-card .album-title {
-	font-size: 1.38rem;
+	font-size: 1rem;
 	font-weight: semi-bold;
 	color: hsl(var(--clr-text) / 0.5);
+}
+
+/* Utilities */
+.select-song button {
+	background-color: hsl(var(--clr-primary));
+	color: hsl(var(--clr-text));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	padding: 0.75em;
+	font-size: 14.08px;
+	border-radius: 0.3em;
+	width: 100%;
+	cursor: pointer;
+}
+
+.select-song .btn-selected {
+	background-color: transparent;
+	border: 1px solid rgb(255, 59, 59);
+	color: rgb(255, 59, 59);
+}
+
+/* Responsive */
+@media screen and (max-width: 850px) {
+	.track-card {
+		padding: 1.5rem;
+	}
+
+	.track-card .track-informations {
+		flex-direction: column;
+		gap: 0.88rem;
+		align-items: flex-start;
+	}
+
+	.track-card .img {
+		width: 30%;
+	}
 }

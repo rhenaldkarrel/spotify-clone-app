@@ -2,6 +2,6 @@
 	background-color: hsl(var(--bg-card));
 	width: fit-content;
 	padding: 1.5rem;
-	border-radius: 1rem;
+	border-radius: var(--radius, 1rem);
 	box-shadow: 0 0 2em hsl(var(--clr-black) / 0.5);
 }

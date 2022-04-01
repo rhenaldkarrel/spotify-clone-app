@@ -3,16 +3,23 @@ import React from "react";
 import Card from "./UI/Card";
 import "./FormCreatePlaylist.css";
 
-const FormCreatePlaylist = () => {
+const FormCreatePlaylist = (props) => {
 	const handleSubmit = (e) => {
 		alert(`Submitted`);
 	};
 
+	if (!props.show) {
+		return null;
+	}
+
 	return (
-		<div className='form-container'>
+		<div className='form-container' onClick={props.onClose}>
 			<Card className='form-card'>
 				<div className='title'>
 					<h2>Create Playlist</h2>
+					<button className='btn-close' onClick={props.onClose}>
+						X
+					</button>
 				</div>
 				<form className='form' onSubmit={() => handleSubmit()}>
 					<div className='form-group'>
