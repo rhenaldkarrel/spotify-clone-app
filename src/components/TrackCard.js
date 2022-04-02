@@ -1,41 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Card from "./UI/Card";
 import "./TrackCard.css";
 
-const TrackCard = (props) => {
+const TrackCard = ({
+	albumCover,
+	songTitle,
+	albumTitle,
+	duration,
+	artistName,
+	onClick,
+	selected,
+}) => {
 	return (
 		<Card className='track-card'>
 			<div className='img'>
-				<img src={props.img} alt='Album' />
+				<img src={albumCover} alt='Album' />
 			</div>
 			<div className='track-informations'>
 				<div className='song-infos'>
 					<div className='song-title'>
-						<p>{props.song}</p>
+						<p>{songTitle}</p>
 					</div>
 					<div className='artist'>
-						<p>{props.artist}</p>
+						<p>{artistName}</p>
 					</div>
 				</div>
 				<div className='album-info'>
 					<div className='album-title'>
-						<p>{props.album}</p>
+						<p>{albumTitle}</p>
 					</div>
 				</div>
-				<div className='created-at'>
-					<div className='release-date'>
-						<p>Published at {props.createdAt}</p>
+				<div className='track-duration'>
+					<div className='duration'>
+						<p>{duration}</p>
 					</div>
 				</div>
 				<div className='option'>
 					<div className='select-song'>
-						{props.selected ? (
-							<button className='btn-selected' onClick={props.onselect}>
+						{selected ? (
+							<button className='btn-selected' onClick={onClick}>
 								Deselect
 							</button>
 						) : (
-							<button onClick={props.onselect}>Select</button>
+							<button onClick={onClick}>Select</button>
 						)}
 					</div>
 				</div>

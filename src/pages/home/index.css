@@ -1,0 +1,60 @@
+/* Layout */
+#tracks #results {
+	display: grid;
+	justify-items: center;
+	gap: 1rem;
+	max-width: 90vw;
+	margin-inline: auto;
+}
+
+/* Utilities */
+.btn-primary {
+	background-color: hsl(var(--clr-primary));
+	color: hsl(var(--clr-text));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	padding: 1em 2em;
+	border-radius: 0.3rem;
+	cursor: pointer;
+}
+
+.btn-logout,
+.btn-create {
+	padding: 1em 1.5em;
+	font-size: 0.75rem;
+}
+
+.btn-logout {
+	border: 1px solid rgb(255, 59, 59);
+	background-color: transparent;
+	color: rgb(255, 59, 59);
+}
+
+#tracks form button {
+	background-color: hsl(var(--clr-primary));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	padding: 1em;
+	border-radius: 0.3rem;
+	cursor: pointer;
+	color: hsl(var(--clr-text));
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+@media screen and (max-width: 900px) {
+	.nav-container {
+		padding-inline: 1rem;
+		padding-block: 0.5rem;
+	}
+
+	.nav-list {
+		gap: 0.5rem;
+	}
+
+	.nav-list button {
+		padding: 0.75em;
+	}
+}
