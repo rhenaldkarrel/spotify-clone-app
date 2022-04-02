@@ -3,20 +3,27 @@ import React from "react";
 import Card from "./UI/Card";
 import "./FormCreatePlaylist.css";
 
-const FormCreatePlaylist = () => {
+const FormCreatePlaylist = ({ onClose, onSubmit, show }) => {
 	const handleSubmit = (e) => {
 		alert(`Submitted`);
 	};
 
+	if (!show) {
+		return null;
+	}
+
 	return (
-		<Card>
-			<div class='content'>
-				<div class='title'>
+		<div className='form-container' onClick={onClose}>
+			<Card className='form-card'>
+				<div className='title'>
 					<h2>Create Playlist</h2>
+					<button className='btn-close' onClick={onClose}>
+						X
+					</button>
 				</div>
-				<form class='form' onSubmit={() => handleSubmit()}>
-					<div class='form-group'>
-						<label for='title'>Title</label>
+				<form className='form' onSubmit={() => onSubmit}>
+					<div className='form-group'>
+						<label htmlFor='title'>Title</label>
 						<input
 							type='text'
 							id='title'
@@ -24,19 +31,19 @@ const FormCreatePlaylist = () => {
 							placeholder='Playlist Title'
 						/>
 					</div>
-					<div class='form-group'>
-						<label for='desc'>Description</label>
+					<div className='form-group'>
+						<label htmlFor='desc'>Description</label>
 						<textarea
 							id='desc'
 							required
 							placeholder='Playlist Description'></textarea>
 					</div>
-					<div class='form-group'>
+					<div className='form-group'>
 						<button id='submit'>Create</button>
 					</div>
 				</form>
-			</div>
-		</Card>
+			</Card>
+		</div>
 	);
 };
 

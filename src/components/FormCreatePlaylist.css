@@ -1,16 +1,47 @@
-input,
-textarea {
-	display: block;
-	margin-top: 0.5rem;
-	padding: 12px;
-	border-radius: 0.3rem;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+.form-container {
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	width: 100%;
-	min-width: 16rem;
+	display: grid;
+	place-items: center;
+	padding-block: 2rem;
+	color: hsl(var(--clr-text));
+	background: hsl(var(--bg-formEls) / 0.8);
 }
 
-textarea {
+.form-card {
+	margin-inline: auto;
+	width: 24rem;
+}
+
+.form-card input,
+.form-card textarea {
+	display: block;
+	margin-top: 0.5rem;
+}
+
+.form-card textarea {
+	min-height: 4rem;
 	resize: vertical;
+}
+
+.form-card .title {
+	display: flex;
+	justify-content: space-between;
+}
+
+input:focus,
+textarea:focus {
+	outline: none;
+	background-color: hsl(var(--bg-formEls) / 1);
+}
+
+.form-card form {
+	margin-top: 1.5rem;
 }
 
 .form-group:not(:first-child) {
@@ -18,13 +49,20 @@ textarea {
 }
 
 .form-group button {
-	background-color: #1ed760;
-	color: white;
+	background-color: hsl(var(--clr-primary));
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	border: none;
-	padding: 10px 20px;
-	border-radius: 1rem;
+	padding: 1em 2em;
+	border-radius: 0.3rem;
 	width: 100%;
 	cursor: pointer;
+	color: hsl(var(--clr-text));
+}
+
+.form-card .title .btn-close {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	color: hsl(var(--clr-text));
 }
