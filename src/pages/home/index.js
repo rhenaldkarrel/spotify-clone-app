@@ -20,8 +20,8 @@ import "./index.css";
 const Home = () => {
 	// Spotify API Configuration
 	const config = {
-		client_id: `${process.env.REACT_APP_CLIENT_ID}`,
-		redirect_uri: `http://localhost:3000/`,
+		client_id: `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`,
+		redirect_uri: `${process.env.REACT_APP_BASE_URL}`,
 		authorize_url: `https://accounts.spotify.com/authorize`,
 		scope: "playlist-modify-private",
 	};
@@ -36,7 +36,6 @@ const Home = () => {
 	// Config
 	const [token, setToken] = useState("");
 	const [show, setShow] = useState(false);
-	const [select, setSelect] = useState(false);
 
 	useEffect(() => {
 		// check the token everytime the web loaded
@@ -60,6 +59,15 @@ const Home = () => {
 		getTracks(keyword, token).then((data) => setTracks(data));
 	};
 
+	// Handle select track
+	const handleSelect = (track) => {
+		if (selectedTracks.includes(track)) {
+			setSelectedTracks(selectedTracks.filter((item) => item !== track));
+		} else {
+			setSelectedTracks([...selectedTracks, track]);
+		}
+	};
+
 	// Map the data
 	const track = Object.values(tracks).map((track) => (
 		<TrackCard
@@ -69,8 +77,19 @@ const Home = () => {
 			albumTitle={track.album.name}
 			albumCover={track.album.images[0].url}
 			duration={convertDuration(track.duration_ms)}
+			onClick={handleSelect}
+			isSelected={selectedTracks.includes(track)}
 		/>
 	));
+
+	// const combinedWithSelectedTracks = Object.values(tracks).map((track) => {
+	// 	const alreadySelected = selectedTracks.find((t) => t.id === track.id);
+	// 	if (alreadySelected) {
+	// 		setSelectedTracks(selectedTracks.filter((item) => item.id !== track.id));
+	// 	} else {
+	// 		setSelectedTracks([...selectedTracks, track]);
+	// 	}
+	// });
 
 	// Get keyword
 	const handleChange = (e) => setKeyword(e.target.value);

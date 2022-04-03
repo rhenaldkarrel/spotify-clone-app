@@ -10,7 +10,7 @@ const TrackCard = ({
 	duration,
 	artistName,
 	onClick,
-	selected,
+	isSelected,
 }) => {
 	return (
 		<Card className='track-card'>
@@ -38,13 +38,11 @@ const TrackCard = ({
 				</div>
 				<div className='option'>
 					<div className='select-song'>
-						{selected ? (
-							<button className='btn-selected' onClick={onClick}>
-								Deselect
-							</button>
-						) : (
-							<button onClick={onClick}>Select</button>
-						)}
+						<button
+							className={isSelected ? " btn-deselect" : ""}
+							onClick={onClick}>
+							{!isSelected ? "Select" : "Deselect"}
+						</button>
 					</div>
 				</div>
 			</div>
