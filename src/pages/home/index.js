@@ -13,6 +13,8 @@ import FormCreatePlaylist from "../../components/FormCreatePlaylist";
 import SearchTracks from "../../components/SearchTracks";
 import Navigation from "../../components/Navigation";
 import Login from "../../components/Login";
+import Tracks from "../../components/Tracks";
+import Card from "../../components/UI/Card";
 
 // Styling
 import "./index.css";
@@ -61,37 +63,27 @@ const Home = () => {
 
 	// Handle select track
 	const handleSelect = (track) => {
-		if (selectedTracks.includes(track)) {
-			setSelectedTracks(selectedTracks.filter((item) => item !== track));
+		const isSelected = selectedTracks.find(
+			(selectedTrack) => selectedTrack === track
+		);
+
+		if (isSelected) {
+			setSelectedTracks(
+				selectedTracks.filter((selectedTrack) => selectedTrack !== track)
+			);
 		} else {
-			setSelectedTracks([...selectedTracks, track]);
+			setSelectedTracks((prev) => [...prev, track]);
 		}
+		console.log(selectedTracks);
 	};
 
-	// Map the data
-	const track = Object.values(tracks).map((track) => (
-		<TrackCard
-			key={track.id}
-			songTitle={track.name}
-			artistName={track.artists[0].name}
-			albumTitle={track.album.name}
-			albumCover={track.album.images[0].url}
-			duration={convertDuration(track.duration_ms)}
-			onClick={handleSelect}
-			isSelected={selectedTracks.includes(track)}
-		/>
+	const test = selectedTracks.map((track) => (
+		<div key={track.id}>
+			<p>{track.name}</p>
+			<p>{track.artists[0].name}</p>
+		</div>
 	));
 
-	// const combinedWithSelectedTracks = Object.values(tracks).map((track) => {
-	// 	const alreadySelected = selectedTracks.find((t) => t.id === track.id);
-	// 	if (alreadySelected) {
-	// 		setSelectedTracks(selectedTracks.filter((item) => item.id !== track.id));
-	// 	} else {
-	// 		setSelectedTracks([...selectedTracks, track]);
-	// 	}
-	// });
-
-	// Get keyword
 	const handleChange = (e) => setKeyword(e.target.value);
 
 	return (
@@ -111,8 +103,13 @@ const Home = () => {
 							<h1 className='title'>Find and Create Playlist</h1>
 							<p>Find a track, select it, and create your personal playlist</p>
 						</div>
+						{test}
 						<SearchTracks onChange={handleChange} onSubmit={handleSearch} />
-						<div id='results'>{track}</div>
+						<Tracks
+							tracks={tracks}
+							onSelectTrack={handleSelect}
+							selectedTracks={selectedTracks}
+						/>
 					</div>
 				</>
 			)}
