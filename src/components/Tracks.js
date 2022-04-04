@@ -10,7 +10,9 @@ const Tracks = ({ tracks, onSelectTrack, selectedTracks }) => {
 					key={track.id}
 					track={track}
 					onSelectTrack={onSelectTrack}
-					isSelected={selectedTracks.includes(track)}
+					isSelected={selectedTracks.find(
+						(selectedTrack) => selectedTrack.id === track.id
+					)}
 				/>
 			);
 		});

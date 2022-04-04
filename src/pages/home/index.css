@@ -4,7 +4,24 @@
 	width: fit-content;
 	display: flex;
 	gap: 1rem;
-	margin-bottom: 1rem;
+	margin-block: 1rem;
+}
+
+#tracks {
+	padding: 2rem;
+}
+
+#tracks .section-introduction {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex-direction: column;
+	margin-bottom: 2rem;
+}
+
+#tracks .section-introduction p {
+	font-size: 0.88rem;
+	color: hsl(var(--clr-text) / 0.5);
 }
 
 /* Utilities */
@@ -29,19 +46,12 @@
 	border: 1px solid rgb(255, 59, 59);
 	background-color: transparent;
 	color: rgb(255, 59, 59);
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-#tracks form button {
-	background-color: hsl(var(--clr-primary));
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	border: none;
-	padding: 1em;
-	border-radius: 0.3rem;
-	cursor: pointer;
+.btn-logout:hover {
+	background-color: rgb(255, 59, 59);
 	color: hsl(var(--clr-text));
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
 }
 
 @media screen and (max-width: 900px) {

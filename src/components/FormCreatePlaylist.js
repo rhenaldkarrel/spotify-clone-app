@@ -4,16 +4,12 @@ import Card from "./UI/Card";
 import "./FormCreatePlaylist.css";
 
 const FormCreatePlaylist = ({ onClose, onSubmit, show }) => {
-	const handleSubmit = (e) => {
-		alert(`Submitted`);
-	};
-
 	if (!show) {
 		return null;
 	}
 
 	return (
-		<div className='form-container' onClick={onClose}>
+		<div className='form-container'>
 			<Card className='form-card'>
 				<div className='title'>
 					<h2>Create Playlist</h2>
@@ -21,7 +17,7 @@ const FormCreatePlaylist = ({ onClose, onSubmit, show }) => {
 						X
 					</button>
 				</div>
-				<form className='form' onSubmit={() => onSubmit}>
+				<form className='form' onSubmit={onSubmit}>
 					<div className='form-group'>
 						<label htmlFor='title'>Title</label>
 						<input

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // Configurations
-import { getTracks, getToken } from "../../auth/api";
+import { getTracks, getToken, createPlaylist } from "../../auth/api";
 
 // Components
 import logo from "../../spotify-logo.png";
@@ -30,6 +30,7 @@ const Home = () => {
 	const [tracks, setTracks] = useState([]);
 	const [keyword, setKeyword] = useState("");
 	const [selectedTracks, setSelectedTracks] = useState([]);
+	const [playlists, setPlaylists] = useState([]);
 
 	// Config
 	const [token, setToken] = useState("");
@@ -72,6 +73,34 @@ const Home = () => {
 		}
 	};
 
+	// Handle create playlist
+	const handleCreatePlaylist = (e) => {
+		e.preventDefault();
+		const playlist = {
+			name: e.target.title.value,
+			description: e.target.desc.value,
+			tracks: selectedTracks,
+		};
+
+		setPlaylists((prev) => [...prev, playlist]);
+		setSelectedTracks([]);
+		setShow(false);
+	};
+
+	const viewPlaylists = playlists.map((playlist, index) => {
+		return (
+			<div className='playlist' key={index}>
+				<h3>{playlist.name}</h3>
+				<p>{playlist.description}</p>
+				<ul>
+					{playlist.tracks.map((track, index) => {
+						return <li key={index}>{track.name}</li>;
+					})}
+				</ul>
+			</div>
+		);
+	});
+
 	const viewSelectedTracks = Object.values(selectedTracks).map((track) => (
 		<PreviewSelectedTracks
 			key={track.id}
@@ -93,12 +122,27 @@ const Home = () => {
 					<Navigation
 						logo={logo}
 						modalShow={() => setShow(true)}
+						isDisplayed={selectedTracks.length > 0}
 						logout={handleLogout}
 					/>
-					<FormCreatePlaylist show={show} onClose={() => setShow(false)} />
+					<FormCreatePlaylist
+						onSubmit={handleCreatePlaylist}
+						show={show}
+						onClose={() => setShow(false)}
+					/>
 					<div id='tracks'>
-						<div className='preview-selected-tracks'>{viewSelectedTracks}</div>
-						<div className='introduction'>
+						{selectedTracks.length > 0 ? (
+							<>
+								<div className='section-introduction'>
+									<h1 className='title'>Create Playlists</h1>
+									<p>Create your personal playlist from the selected tracks.</p>
+									<div className='preview-selected-tracks'>
+										{viewSelectedTracks}
+									</div>
+								</div>
+							</>
+						) : null}
+						<div className='section-introduction'>
 							<h1 className='title'>Find and Create Playlist</h1>
 							<p>Find a track, select it, and create your personal playlist</p>
 						</div>
@@ -108,6 +152,13 @@ const Home = () => {
 							onSelectTrack={handleSelect}
 							selectedTracks={selectedTracks}
 						/>
+						{playlists.length > 0 ? (
+							<div className='section-introduction'>
+								<h1 className='title'>Hey, this is your playlists!</h1>
+								<p>All playlists that you have created before.</p>
+								<div className=''>{viewPlaylists}</div>
+							</div>
+						) : null}
 					</div>
 				</>
 			)}

@@ -29,3 +29,39 @@ export const getToken = () => {
 	}
 	return token;
 };
+
+export const createPlaylist = async (token, name, description, tracks) => {
+	const response = await fetch(
+		"https://api.spotify.com/v1/users/spotify/playlists",
+		{
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				name,
+				description,
+				public: false,
+			}),
+		}
+	);
+	const res = await response.json();
+	const playlistId = res.id;
+
+	const response2 = await fetch(
+		`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+		{
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				uris: tracks.map((track) => track.uri),
+			}),
+		}
+	);
+	const res2 = await response2.json();
+	return res2;
+};

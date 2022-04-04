@@ -16,3 +16,15 @@
 	display: flex;
 	gap: 1rem;
 }
+
+.nav-list .btn-create {
+	position: fixed;
+	bottom: 1rem;
+	left: 1rem;
+	box-shadow: 0 1em 1em hsl(var(--clr-primary) / 0.1);
+	transition: all 0.3s ease-in-out;
+}
+
+.nav-list .btn-create:hover {
+	transform: translateY(-0.2rem);
+}

@@ -66,12 +66,23 @@
 	border-radius: 0.3em;
 	width: 100%;
 	cursor: pointer;
+	transition: box-shadow 0.2s ease-in-out;
+}
+
+.select-song button:hover {
+	box-shadow: 0 0 0.5em hsl(var(--clr-primary) / 0.5);
 }
 
 .select-song .btn-deselect {
 	background-color: transparent;
 	border: 1px solid rgb(255, 59, 59);
 	color: rgb(255, 59, 59);
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.select-song .btn-deselect:hover {
+	background-color: rgb(255, 59, 59);
+	color: hsl(var(--clr-text));
 }
 
 /* Responsive */
