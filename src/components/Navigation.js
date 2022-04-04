@@ -1,12 +1,13 @@
 import React from "react";
 import "./Navigation.css";
 
-const Navigation = ({ logo, modalShow, logout, isDisplayed }) => {
+const Navigation = ({ logo, modalShow, logout, isDisplayed, userInfo }) => {
 	return (
 		<nav>
 			<div className='nav-container'>
 				<div className='navbar-brand'>
 					<img src={logo} alt='Spotify Logo' />
+					<p>Hello, {userInfo.display_name}!</p>
 				</div>
 				<div className='nav-list'>
 					<button

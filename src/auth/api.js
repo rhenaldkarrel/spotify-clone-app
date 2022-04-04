@@ -30,38 +30,35 @@ export const getToken = () => {
 	return token;
 };
 
-export const createPlaylist = async (token, name, description, tracks) => {
+export const getUserInfo = async (token) => {
+	const response = await fetch("https://api.spotify.com/v1/me/", {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer ${token}`,
+			"Content-Type": "application/json",
+		},
+	});
+	const userData = await response.json();
+	return userData;
+};
+
+export const createPlaylist = async (userId, { name, description }) => {
 	const response = await fetch(
-		"https://api.spotify.com/v1/users/spotify/playlists",
+		`https://api.spotify.com/v1/users/${userId}/playlists`,
 		{
 			method: "POST",
 			headers: {
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				name,
-				description,
+				name: name,
+				description: description,
 				public: false,
 			}),
 		}
 	);
 	const res = await response.json();
-	const playlistId = res.id;
-
-	const response2 = await fetch(
-		`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-		{
-			method: "POST",
-			headers: {
-				Authorization: `Bearer ${token}`,
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				uris: tracks.map((track) => track.uri),
-			}),
-		}
-	);
-	const res2 = await response2.json();
-	return res2;
+	console.log(res);
+	return res;
 };

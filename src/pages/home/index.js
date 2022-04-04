@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 // Configurations
-import { getTracks, getToken, createPlaylist } from "../../auth/api";
+import {
+	getTracks,
+	getToken,
+	createPlaylist,
+	getUserInfo,
+} from "../../auth/api";
 
 // Components
 import logo from "../../spotify-logo.png";
@@ -21,16 +26,22 @@ const Home = () => {
 		client_id: `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`,
 		redirect_uri: `${process.env.REACT_APP_BASE_URL}`,
 		authorize_url: `https://accounts.spotify.com/authorize`,
-		scope: "playlist-modify-private",
+		scope: [
+			"user-read-email",
+			"user-read-private",
+			"playlist-modify-private",
+			"playlist-read-private",
+		],
 	};
 
 	let redirectUrl = `${config.authorize_url}?client_id=${config.client_id}&response_type=token&redirect_uri=${config.redirect_uri}&scope=${config.scope}`;
 
-	// Trakcs
+	// Tracks
 	const [tracks, setTracks] = useState([]);
 	const [keyword, setKeyword] = useState("");
 	const [selectedTracks, setSelectedTracks] = useState([]);
 	const [playlists, setPlaylists] = useState([]);
+	const [userInfo, setUserInfo] = useState([]);
 
 	// Config
 	const [token, setToken] = useState("");
@@ -38,13 +49,19 @@ const Home = () => {
 
 	useEffect(() => {
 		// check the token everytime the web loaded
-		if (
-			window.localStorage.getItem("token") ||
-			!window.localStorage.getItem("token")
-		) {
+		if (!token) {
 			setToken(getToken());
 		}
 	}, []);
+
+	// Get user info when the token is available
+	useEffect(() => {
+		if (token) {
+			getUserInfo(token).then((res) => {
+				setUserInfo(res);
+			});
+		}
+	}, [token]);
 
 	// Handle Logout
 	const handleLogout = () => {
@@ -82,12 +99,15 @@ const Home = () => {
 			tracks: selectedTracks,
 		};
 
-		setPlaylists((prev) => [...prev, playlist]);
-		setSelectedTracks([]);
+		createPlaylist(userInfo.id, playlist).then((data) => {
+			setPlaylists((prev) => [...prev, data]);
+			setSelectedTracks([]);
+		});
+
 		setShow(false);
 	};
 
-	const viewPlaylists = playlists.map((playlist, index) => {
+	const viewPlaylists = Object.values(playlists).map((playlist, index) => {
 		return (
 			<div className='playlist' key={index}>
 				<h3>{playlist.name}</h3>
@@ -124,6 +144,7 @@ const Home = () => {
 						modalShow={() => setShow(true)}
 						isDisplayed={selectedTracks.length > 0}
 						logout={handleLogout}
+						userInfo={userInfo}
 					/>
 					<FormCreatePlaylist
 						onSubmit={handleCreatePlaylist}

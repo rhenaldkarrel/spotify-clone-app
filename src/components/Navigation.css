@@ -12,6 +12,13 @@
 	width: 3rem;
 }
 
+.navbar-brand {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	align-items: center;
+}
+
 .nav-list {
 	display: flex;
 	gap: 1rem;
