@@ -3,18 +3,14 @@ import React, { useState, useEffect } from "react";
 // Configurations
 import { getTracks, getToken } from "../../auth/api";
 
-// Helper functions
-import { convertDuration } from "../../functions/functions";
-
 // Components
 import logo from "../../spotify-logo.png";
-import TrackCard from "../../components/TrackCard";
 import FormCreatePlaylist from "../../components/FormCreatePlaylist";
 import SearchTracks from "../../components/SearchTracks";
 import Navigation from "../../components/Navigation";
 import Login from "../../components/Login";
 import Tracks from "../../components/Tracks";
-import Card from "../../components/UI/Card";
+import PreviewSelectedTracks from "../../components/PreviewSelectedTracks";
 
 // Styling
 import "./index.css";
@@ -74,14 +70,16 @@ const Home = () => {
 		} else {
 			setSelectedTracks((prev) => [...prev, track]);
 		}
-		console.log(selectedTracks);
 	};
 
-	const test = selectedTracks.map((track) => (
-		<div key={track.id}>
-			<p>{track.name}</p>
-			<p>{track.artists[0].name}</p>
-		</div>
+	const viewSelectedTracks = Object.values(selectedTracks).map((track) => (
+		<PreviewSelectedTracks
+			key={track.id}
+			songTitle={track.name}
+			albumCover={track.album.images[0].url}
+			artistName={track.artists}
+			albumName={track.album.name}
+		/>
 	));
 
 	const handleChange = (e) => setKeyword(e.target.value);
@@ -99,11 +97,11 @@ const Home = () => {
 					/>
 					<FormCreatePlaylist show={show} onClose={() => setShow(false)} />
 					<div id='tracks'>
+						<div className='preview-selected-tracks'>{viewSelectedTracks}</div>
 						<div className='introduction'>
 							<h1 className='title'>Find and Create Playlist</h1>
 							<p>Find a track, select it, and create your personal playlist</p>
 						</div>
-						{test}
 						<SearchTracks onChange={handleChange} onSubmit={handleSearch} />
 						<Tracks
 							tracks={tracks}

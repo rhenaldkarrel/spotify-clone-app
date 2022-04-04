@@ -1,5 +1,6 @@
 import React from "react";
 import TrackCard from "./TrackCard";
+import "./Tracks.css";
 
 const Tracks = ({ tracks, onSelectTrack, selectedTracks }) => {
 	function renderTrackCards() {
@@ -15,7 +16,7 @@ const Tracks = ({ tracks, onSelectTrack, selectedTracks }) => {
 		});
 	}
 
-	return <div className='result'>{renderTrackCards()}</div>;
+	return <div className='results'>{renderTrackCards()}</div>;
 };
 
 export default Tracks;

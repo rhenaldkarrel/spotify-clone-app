@@ -1,10 +1,10 @@
 /* Layout */
-#tracks #results {
-	display: grid;
-	justify-items: center;
+.preview-selected-tracks {
+	max-width: 100%;
+	width: fit-content;
+	display: flex;
 	gap: 1rem;
-	max-width: 90vw;
-	margin-inline: auto;
+	margin-bottom: 1rem;
 }
 
 /* Utilities */
