@@ -59,6 +59,23 @@ export const createPlaylist = async (userId, { name, description }) => {
 		}
 	);
 	const res = await response.json();
-	console.log(res);
+	return res;
+};
+
+export const addTracksToPlaylist = async (id, tracks) => {
+	const response = await fetch(
+		`https://api.spotify.com/v1/playlists/${id}/tracks`,
+		{
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				uris: tracks,
+			}),
+		}
+	);
+	const res = await response.json();
 	return res;
 };

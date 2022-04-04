@@ -6,6 +6,7 @@ import {
 	getToken,
 	createPlaylist,
 	getUserInfo,
+	addTracksToPlaylist,
 } from "../../auth/api";
 
 // Components
@@ -40,7 +41,7 @@ const Home = () => {
 	const [tracks, setTracks] = useState([]);
 	const [keyword, setKeyword] = useState("");
 	const [selectedTracks, setSelectedTracks] = useState([]);
-	const [playlists, setPlaylists] = useState([]);
+	const [playlist, setPlaylist] = useState([]);
 	const [userInfo, setUserInfo] = useState([]);
 
 	// Config
@@ -93,33 +94,36 @@ const Home = () => {
 	// Handle create playlist
 	const handleCreatePlaylist = (e) => {
 		e.preventDefault();
-		const playlist = {
+
+		// Retrieve the user's input
+		const playlistData = {
 			name: e.target.title.value,
 			description: e.target.desc.value,
-			tracks: selectedTracks,
 		};
 
-		createPlaylist(userInfo.id, playlist).then((data) => {
-			setPlaylists((prev) => [...prev, data]);
-			setSelectedTracks([]);
+		// Create playlist
+		createPlaylist(userInfo.id, playlistData).then((playlistData) => {
+			setPlaylist(playlistData);
 		});
 
+		// Add tracks to playlist
+		const tracksToAdd = selectedTracks.map((track) => track.uri);
+		addTracksToPlaylist(playlist.id, tracksToAdd);
+
+		setPlaylist([]);
+		setSelectedTracks([]);
 		setShow(false);
 	};
 
-	const viewPlaylists = Object.values(playlists).map((playlist, index) => {
-		return (
-			<div className='playlist' key={index}>
-				<h3>{playlist.name}</h3>
-				<p>{playlist.description}</p>
-				<ul>
-					{playlist.tracks.map((track, index) => {
-						return <li key={index}>{track.name}</li>;
-					})}
-				</ul>
-			</div>
-		);
-	});
+	// const viewPlaylists = playlists.map((playlist, index) => {
+	// 	return (
+	// 		<div className='playlist' key={index}>
+	// 			<h3>{playlist.name}</h3>
+	// 			<p>{playlist.description}</p>
+	// 			<p>{playlist.external_urls}</p>
+	// 		</div>
+	// 	);
+	// });
 
 	const viewSelectedTracks = Object.values(selectedTracks).map((track) => (
 		<PreviewSelectedTracks
@@ -173,13 +177,13 @@ const Home = () => {
 							onSelectTrack={handleSelect}
 							selectedTracks={selectedTracks}
 						/>
-						{playlists.length > 0 ? (
+						{/* {playlists.length > 0 ? (
 							<div className='section-introduction'>
 								<h1 className='title'>Hey, this is your playlists!</h1>
 								<p>All playlists that you have created before.</p>
 								<div className=''>{viewPlaylists}</div>
 							</div>
-						) : null}
+						) : null} */}
 					</div>
 				</>
 			)}
