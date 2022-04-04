@@ -42,7 +42,11 @@ export const getUserInfo = async (token) => {
 	return userData;
 };
 
-export const createPlaylist = async (userId, { name, description }) => {
+export const createPlaylist = async (
+	userId,
+	{ name, description },
+	tracksToAdd
+) => {
 	const response = await fetch(
 		`https://api.spotify.com/v1/users/${userId}/playlists`,
 		{
@@ -58,8 +62,8 @@ export const createPlaylist = async (userId, { name, description }) => {
 			}),
 		}
 	);
-	const res = await response.json();
-	return res;
+	const playlist = await response.json();
+	addTracksToPlaylist(playlist.id, tracksToAdd);
 };
 
 export const addTracksToPlaylist = async (id, tracks) => {
@@ -76,6 +80,4 @@ export const addTracksToPlaylist = async (id, tracks) => {
 			}),
 		}
 	);
-	const res = await response.json();
-	return res;
 };

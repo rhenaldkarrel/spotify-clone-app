@@ -6,7 +6,6 @@ import {
 	getToken,
 	createPlaylist,
 	getUserInfo,
-	addTracksToPlaylist,
 } from "../../auth/api";
 
 // Components
@@ -40,11 +39,12 @@ const Home = () => {
 	// Tracks
 	const [tracks, setTracks] = useState([]);
 	const [keyword, setKeyword] = useState("");
+
+	// Tracks to add to playlist
 	const [selectedTracks, setSelectedTracks] = useState([]);
-	const [playlist, setPlaylist] = useState([]);
-	const [userInfo, setUserInfo] = useState([]);
 
 	// Config
+	const [userInfo, setUserInfo] = useState([]);
 	const [token, setToken] = useState("");
 	const [show, setShow] = useState(false);
 
@@ -101,29 +101,14 @@ const Home = () => {
 			description: e.target.desc.value,
 		};
 
-		// Create playlist
-		createPlaylist(userInfo.id, playlistData).then((playlistData) => {
-			setPlaylist(playlistData);
-		});
-
-		// Add tracks to playlist
+		// Create playlist and add the selected tracks
 		const tracksToAdd = selectedTracks.map((track) => track.uri);
-		addTracksToPlaylist(playlist.id, tracksToAdd);
+		createPlaylist(userInfo.id, playlistData, tracksToAdd);
 
-		setPlaylist([]);
+		// Reset State
 		setSelectedTracks([]);
 		setShow(false);
 	};
-
-	// const viewPlaylists = playlists.map((playlist, index) => {
-	// 	return (
-	// 		<div className='playlist' key={index}>
-	// 			<h3>{playlist.name}</h3>
-	// 			<p>{playlist.description}</p>
-	// 			<p>{playlist.external_urls}</p>
-	// 		</div>
-	// 	);
-	// });
 
 	const viewSelectedTracks = Object.values(selectedTracks).map((track) => (
 		<PreviewSelectedTracks
@@ -157,15 +142,13 @@ const Home = () => {
 					/>
 					<div id='tracks'>
 						{selectedTracks.length > 0 ? (
-							<>
-								<div className='section-introduction'>
-									<h1 className='title'>Create Playlists</h1>
-									<p>Create your personal playlist from the selected tracks.</p>
-									<div className='preview-selected-tracks'>
-										{viewSelectedTracks}
-									</div>
+							<div className='section-introduction'>
+								<h1 className='title'>Create Playlists</h1>
+								<p>Create your personal playlist from the selected tracks.</p>
+								<div className='preview-selected-tracks'>
+									{viewSelectedTracks}
 								</div>
-							</>
+							</div>
 						) : null}
 						<div className='section-introduction'>
 							<h1 className='title'>Find and Create Playlist</h1>
@@ -177,13 +160,6 @@ const Home = () => {
 							onSelectTrack={handleSelect}
 							selectedTracks={selectedTracks}
 						/>
-						{/* {playlists.length > 0 ? (
-							<div className='section-introduction'>
-								<h1 className='title'>Hey, this is your playlists!</h1>
-								<p>All playlists that you have created before.</p>
-								<div className=''>{viewPlaylists}</div>
-							</div>
-						) : null} */}
 					</div>
 				</>
 			)}
