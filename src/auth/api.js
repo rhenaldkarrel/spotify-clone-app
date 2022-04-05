@@ -15,7 +15,7 @@ export const getTracks = async (keyword, token) => {
 
 export const getToken = () => {
 	const hash = window.location.hash;
-	let token = window.localStorage.getItem("token");
+	let token = localStorage.getItem("token");
 
 	if (!token && hash) {
 		token = hash
@@ -25,7 +25,7 @@ export const getToken = () => {
 			.split("=")[1];
 
 		window.location.hash = "";
-		window.localStorage.setItem("token", token);
+		localStorage.setItem("token", token);
 	}
 	return token;
 };

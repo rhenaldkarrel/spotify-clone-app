@@ -13,7 +13,7 @@ const PreviewSelectedTracks = ({
 			<div className='album-cover'>
 				<img src={albumCover} alt={albumName} />
 			</div>
-			<div className='song-title'>
+			<div className='prev-song-title'>
 				<p>{songTitle}</p>
 			</div>
 			<div className='artist'>

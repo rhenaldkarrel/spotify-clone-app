@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // Configurations
 import {
@@ -7,6 +7,7 @@ import {
 	createPlaylist,
 	getUserInfo,
 } from "../../auth/api";
+import TokenContext from "../../context/TokenContext";
 
 // Components
 import logo from "../../spotify-logo.png";
@@ -44,8 +45,8 @@ const Home = () => {
 	const [selectedTracks, setSelectedTracks] = useState([]);
 
 	// Config
+	const { token, setToken } = useContext(TokenContext);
 	const [userInfo, setUserInfo] = useState([]);
-	const [token, setToken] = useState("");
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
@@ -67,7 +68,7 @@ const Home = () => {
 	// Handle Logout
 	const handleLogout = () => {
 		setToken("");
-		window.localStorage.removeItem("token");
+		localStorage.removeItem("token");
 	};
 
 	// Get data from API
