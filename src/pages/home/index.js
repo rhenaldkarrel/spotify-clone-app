@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // Configurations
-import {
-	getTracks,
-	getToken,
-	createPlaylist,
-	getUserInfo,
-} from "../../auth/api";
+import { getTracks, createPlaylist, getUserInfo } from "../../auth/api";
 import TokenContext from "../../context/TokenContext";
 
 // Components
@@ -14,7 +9,6 @@ import logo from "../../spotify-logo.png";
 import FormCreatePlaylist from "../../components/FormCreatePlaylist";
 import SearchTracks from "../../components/SearchTracks";
 import Navigation from "../../components/Navigation";
-import Login from "../../components/Login";
 import Tracks from "../../components/Tracks";
 import PreviewSelectedTracks from "../../components/PreviewSelectedTracks";
 
@@ -22,21 +16,6 @@ import PreviewSelectedTracks from "../../components/PreviewSelectedTracks";
 import "./index.css";
 
 const Home = () => {
-	// Spotify API Configuration
-	const config = {
-		client_id: `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`,
-		redirect_uri: `${process.env.REACT_APP_BASE_URL}`,
-		authorize_url: `https://accounts.spotify.com/authorize`,
-		scope: [
-			"user-read-email",
-			"user-read-private",
-			"playlist-modify-private",
-			"playlist-read-private",
-		],
-	};
-
-	let redirectUrl = `${config.authorize_url}?client_id=${config.client_id}&response_type=token&redirect_uri=${config.redirect_uri}&scope=${config.scope}`;
-
 	// Tracks
 	const [tracks, setTracks] = useState([]);
 	const [keyword, setKeyword] = useState("");
@@ -49,13 +28,6 @@ const Home = () => {
 	const [userInfo, setUserInfo] = useState([]);
 	const [show, setShow] = useState(false);
 
-	useEffect(() => {
-		// check the token everytime the web loaded
-		if (!token) {
-			setToken(getToken());
-		}
-	}, []);
-
 	// Get user info when the token is available
 	useEffect(() => {
 		if (token) {
@@ -63,7 +35,7 @@ const Home = () => {
 				setUserInfo(res);
 			});
 		}
-	}, [token]);
+	}, []);
 
 	// Handle Logout
 	const handleLogout = () => {
@@ -104,66 +76,54 @@ const Home = () => {
 
 		// Create playlist and add the selected tracks
 		const tracksToAdd = selectedTracks.map((track) => track.uri);
-		createPlaylist(userInfo.id, playlistData, tracksToAdd);
+		createPlaylist(userInfo.id, playlistData, tracksToAdd, token);
 
 		// Reset State
 		setSelectedTracks([]);
 		setShow(false);
 	};
 
-	const viewSelectedTracks = Object.values(selectedTracks).map((track) => (
-		<PreviewSelectedTracks
-			key={track.id}
-			songTitle={track.name}
-			albumCover={track.album.images[0].url}
-			artistName={track.artists}
-			albumName={track.album.name}
-		/>
-	));
-
 	const handleChange = (e) => setKeyword(e.target.value);
 
 	return (
 		<>
-			{!token ? (
-				<Login redirectUrl={redirectUrl} logo={logo} />
-			) : (
-				<>
-					<Navigation
-						logo={logo}
-						modalShow={() => setShow(true)}
-						isDisplayed={selectedTracks.length > 0}
-						logout={handleLogout}
-						userInfo={userInfo}
-					/>
-					<FormCreatePlaylist
-						onSubmit={handleCreatePlaylist}
-						show={show}
-						onClose={() => setShow(false)}
-					/>
-					<div id='tracks'>
-						{selectedTracks.length > 0 ? (
-							<div className='section-introduction'>
-								<h1 className='title'>Create Playlists</h1>
-								<p>Create your personal playlist from the selected tracks.</p>
-								<div className='preview-selected-tracks'>
-									{viewSelectedTracks}
-								</div>
-							</div>
-						) : null}
-						<div className='section-introduction'>
-							<h1 className='title'>Find and Create Playlist</h1>
-							<p>Find a track, select it, and create your personal playlist</p>
+			<Navigation
+				logo={logo}
+				modalShow={() => setShow(true)}
+				isDisplayed={selectedTracks.length > 0}
+				logout={handleLogout}
+				userInfo={userInfo}
+			/>
+			<FormCreatePlaylist
+				onSubmit={handleCreatePlaylist}
+				show={show}
+				onClose={() => setShow(false)}
+			/>
+			<div id='tracks'>
+				{selectedTracks.length > 0 ? (
+					<div className='section-introduction'>
+						<h1 className='title'>Create Playlists</h1>
+						<p className='desc'>
+							Create your personal playlist from the selected tracks.
+						</p>
+						<div className='preview-selected-tracks'>
+							<PreviewSelectedTracks selectedTracks={selectedTracks} />
 						</div>
-						<SearchTracks onChange={handleChange} onSubmit={handleSearch} />
-						<Tracks
-							tracks={tracks}
-							onSelectTrack={handleSelect}
-							selectedTracks={selectedTracks}
-						/>
 					</div>
-				</>
-			)}
+				) : null}
+				<div className='section-introduction'>
+					<h1 className='title'>Find and Create Playlist</h1>
+					<p className='desc'>
+						Find a track, select it, and create your personal playlist
+					</p>
+				</div>
+				<SearchTracks onChange={handleChange} onSubmit={handleSearch} />
+				<Tracks
+					tracks={tracks}
+					onSelectTrack={handleSelect}
+					selectedTracks={selectedTracks}
+				/>
+			</div>
 		</>
 	);
 };

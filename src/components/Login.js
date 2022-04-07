@@ -1,14 +1,14 @@
 import "./Login.css";
 
-const Login = ({ redirectUrl, logo }) => {
+const Login = ({ onClick, logo }) => {
 	return (
 		<div className='container-welcome'>
 			<div className='welcome'>
 				<img src={logo} alt='Spotify Logo' />
 				<h1>&#x1F44B; Welcome to Rhenald's Spotify Clone App!</h1>
-				<a href={redirectUrl} className='btn-primary'>
+				<button onClick={onClick} className='btn-primary'>
 					Login
-				</a>
+				</button>
 			</div>
 		</div>
 	);

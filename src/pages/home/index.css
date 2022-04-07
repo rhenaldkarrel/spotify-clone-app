@@ -19,7 +19,7 @@
 	margin-bottom: 2rem;
 }
 
-#tracks .section-introduction p {
+#tracks .section-introduction .desc {
 	font-size: 0.88rem;
 	color: hsl(var(--clr-text) / 0.5);
 }

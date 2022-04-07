@@ -1,7 +1,7 @@
 import "./AlertSuccess.css";
 import Card from "./UI/Card";
 
-const AlertSuccess = ({ header, message, isPopUp }) => {
+const AlertSuccess = ({ header, message, onClose }) => {
 	return (
 		<div className='alert-container'>
 			<Card className='alert-success'>
@@ -15,6 +15,11 @@ const AlertSuccess = ({ header, message, isPopUp }) => {
 					<div className='alert-message'>
 						<p>{message}</p>
 					</div>
+				</div>
+				<div className='alert-button'>
+					<button className='btn-primary' onClick={onClose}>
+						Close
+					</button>
 				</div>
 			</Card>
 		</div>

@@ -1,3 +1,23 @@
+// Spotify Authorization
+export const authSpotify = () => {
+	const config = {
+		client_id: `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`,
+		redirect_uri: `${process.env.REACT_APP_BASE_URL}`,
+		authorize_url: `https://accounts.spotify.com/authorize`,
+		scope: [
+			"user-read-email",
+			"user-read-private",
+			"playlist-modify-private",
+			"playlist-read-private",
+		],
+	};
+
+	let redirectUrl = `${config.authorize_url}?client_id=${config.client_id}&response_type=token&redirect_uri=${config.redirect_uri}&scope=${config.scope}`;
+
+	window.location.replace(redirectUrl);
+};
+
+// Search for tracks
 export const getTracks = async (keyword, token) => {
 	const response = await fetch(
 		`https://api.spotify.com/v1/search?q=${keyword}&type=track&limit=15`,
@@ -13,6 +33,7 @@ export const getTracks = async (keyword, token) => {
 	return data;
 };
 
+// Get the token from authorization
 export const getToken = () => {
 	const hash = window.location.hash;
 	let token = localStorage.getItem("token");
@@ -23,13 +44,13 @@ export const getToken = () => {
 			.split("&")
 			.find((elem) => elem.startsWith("access_token"))
 			.split("=")[1];
-
 		window.location.hash = "";
 		localStorage.setItem("token", token);
 	}
 	return token;
 };
 
+// Get user info
 export const getUserInfo = async (token) => {
 	const response = await fetch("https://api.spotify.com/v1/me/", {
 		method: "GET",
@@ -45,14 +66,15 @@ export const getUserInfo = async (token) => {
 export const createPlaylist = async (
 	userId,
 	{ name, description },
-	tracksToAdd
+	tracksToAdd,
+	token
 ) => {
 	const response = await fetch(
 		`https://api.spotify.com/v1/users/${userId}/playlists`,
 		{
 			method: "POST",
 			headers: {
-				Authorization: `Bearer ${localStorage.getItem("token")}`,
+				Authorization: `Bearer ${token}`,
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
@@ -63,16 +85,16 @@ export const createPlaylist = async (
 		}
 	);
 	const playlist = await response.json();
-	addTracksToPlaylist(playlist.id, tracksToAdd);
+	addTracksToPlaylist(playlist.id, tracksToAdd, token);
 };
 
-export const addTracksToPlaylist = async (id, tracks) => {
+export const addTracksToPlaylist = async (id, tracks, token) => {
 	const response = await fetch(
 		`https://api.spotify.com/v1/playlists/${id}/tracks`,
 		{
 			method: "POST",
 			headers: {
-				Authorization: `Bearer ${localStorage.getItem("token")}`,
+				Authorization: `Bearer ${token}`,
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({

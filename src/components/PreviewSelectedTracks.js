@@ -2,25 +2,20 @@ import React from "react";
 import Card from "./UI/Card";
 import "./PreviewSelectedTracks.css";
 
-const PreviewSelectedTracks = ({
-	albumCover,
-	songTitle,
-	artistName,
-	albumName,
-}) => {
-	return (
-		<Card className='card-selected-tracks'>
+const PreviewSelectedTracks = ({ selectedTracks }) => {
+	return selectedTracks.map((track) => (
+		<Card className='card-selected-tracks' key={track.id}>
 			<div className='album-cover'>
-				<img src={albumCover} alt={albumName} />
+				<img src={track.album.images[0].url} alt={track.album.name} />
 			</div>
 			<div className='prev-song-title'>
-				<p>{songTitle}</p>
+				<p>{track.name}</p>
 			</div>
-			<div className='artist'>
-				<p>{artistName.map((artist) => artist.name).join(", ")}</p>
+			<div className='prev-artist'>
+				<p>{track.artists.map((artist) => artist.name).join(", ")}</p>
 			</div>
 		</Card>
-	);
+	));
 };
 
 export default PreviewSelectedTracks;

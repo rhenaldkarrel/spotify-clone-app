@@ -15,7 +15,7 @@
 .alert-success {
 	display: flex;
 	align-items: center;
-	gap: 2rem;
+	gap: 1rem;
 	flex-direction: column;
 	margin-bottom: 2rem;
 	padding-block: 3rem;
