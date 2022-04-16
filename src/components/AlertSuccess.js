@@ -1,7 +1,10 @@
 import "./AlertSuccess.css";
 import Card from "./UI/Card";
 
-const AlertSuccess = ({ header, message, onClose }) => {
+const AlertSuccess = ({ header, message, show, onClose }) => {
+	if (!show) {
+		return null;
+	}
 	return (
 		<div className='alert-container'>
 			<Card className='alert-success'>

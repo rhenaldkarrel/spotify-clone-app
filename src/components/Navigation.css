@@ -8,15 +8,8 @@
 	box-shadow: 0 0 3em hsl(var(--clr-black) / 0.5);
 }
 
-.navbar-brand img {
+.nav-container img {
 	width: 3rem;
-}
-
-.navbar-brand {
-	display: flex;
-	flex-direction: row;
-	gap: 1rem;
-	align-items: center;
 }
 
 .nav-list {
@@ -34,4 +27,15 @@
 
 .nav-list .btn-create:hover {
 	transform: translateY(-0.2rem);
+}
+
+.nav-container .user-info {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.nav-container .user-info img {
+	border-radius: 50%;
+	width: 2rem;
 }

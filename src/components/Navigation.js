@@ -5,11 +5,14 @@ const Navigation = ({ logo, modalShow, logout, isDisplayed, userInfo }) => {
 	return (
 		<nav>
 			<div className='nav-container'>
-				<div className='navbar-brand'>
+				<div className='nav-brand'>
 					<img src={logo} alt='Spotify Logo' />
-					<p>Hello, {userInfo.display_name}!</p>
 				</div>
 				<div className='nav-list'>
+					<div className='user-info'>
+						{/* <img src={userInfo.images[0].url} alt='Display Picture' /> */}
+						<p>Hello, {userInfo.display_name}!</p>
+					</div>
 					<button
 						className='btn-primary btn-create'
 						style={isDisplayed ? { display: "block" } : { display: "none" }}

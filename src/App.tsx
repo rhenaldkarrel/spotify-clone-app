@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 // Auth
-import { getToken } from "./auth/api";
+import { getToken } from "./auth/auth";
 
 // Pages
 import Home from "./pages/home/index";

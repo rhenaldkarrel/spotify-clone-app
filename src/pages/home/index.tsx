@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // Configurations
-import { getTracks, createPlaylist, getUserInfo } from "../../auth/api";
+import { getTracks, createPlaylist } from "../../auth/api";
+import { getUserInfo } from "../../auth/auth";
 import TokenContext from "../../context/TokenContext";
 
 // Components
@@ -11,6 +12,7 @@ import SearchTracks from "../../components/SearchTracks";
 import Navigation from "../../components/Navigation";
 import Tracks from "../../components/Tracks";
 import PreviewSelectedTracks from "../../components/PreviewSelectedTracks";
+import AlertSuccess from "../../components/AlertSuccess";
 
 // Styling
 import "./index.css";
@@ -27,6 +29,7 @@ const Home = () => {
 	const { token, setToken } = useContext(TokenContext);
 	const [userInfo, setUserInfo] = useState([]);
 	const [show, setShow] = useState(false);
+	const [showAlert, setShowAlert] = useState(false);
 
 	// Get user info when the token is available
 	useEffect(() => {
@@ -81,6 +84,7 @@ const Home = () => {
 		// Reset State
 		setSelectedTracks([]);
 		setShow(false);
+		setShowAlert(true);
 	};
 
 	const handleChange = (e) => setKeyword(e.target.value);
@@ -99,18 +103,13 @@ const Home = () => {
 				show={show}
 				onClose={() => setShow(false)}
 			/>
+			<AlertSuccess
+				header={"Success created playlist!"}
+				message={"Check your spotify account to check it."}
+				show={showAlert}
+				onClose={() => setShowAlert(false)}
+			/>
 			<div id='tracks'>
-				{selectedTracks.length > 0 ? (
-					<div className='section-introduction'>
-						<h1 className='title'>Create Playlists</h1>
-						<p className='desc'>
-							Create your personal playlist from the selected tracks.
-						</p>
-						<div className='preview-selected-tracks'>
-							<PreviewSelectedTracks selectedTracks={selectedTracks} />
-						</div>
-					</div>
-				) : null}
 				<div className='section-introduction'>
 					<h1 className='title'>Find and Create Playlist</h1>
 					<p className='desc'>
@@ -123,6 +122,17 @@ const Home = () => {
 					onSelectTrack={handleSelect}
 					selectedTracks={selectedTracks}
 				/>
+				{selectedTracks.length > 0 ? (
+					<div className='section-introduction' style={{ marginTop: "4rem" }}>
+						<h1 className='title'>Create Playlists</h1>
+						<p className='desc'>
+							Create your personal playlist from the selected tracks.
+						</p>
+						<div className='preview-selected-tracks'>
+							<PreviewSelectedTracks selectedTracks={selectedTracks} />
+						</div>
+					</div>
+				) : null}
 			</div>
 		</>
 	);
