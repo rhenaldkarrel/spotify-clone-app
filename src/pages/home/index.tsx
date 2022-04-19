@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router";
 
 // Configurations
 import { getTracks, createPlaylist } from "../../auth/api";
-import { getUserInfo } from "../../auth/auth";
-import TokenContext from "../../context/TokenContext";
+
+// Redux
+import { logout } from "../../store/authSlice";
+import {
+	useTypedSelector,
+	useTypedDispatch,
+} from "../../hooks/typedReduxHooks";
 
 // Components
 import logo from "../../spotify-logo.png";
@@ -14,10 +20,17 @@ import Tracks from "../../components/Tracks";
 import PreviewSelectedTracks from "../../components/PreviewSelectedTracks";
 import AlertSuccess from "../../components/AlertSuccess";
 
+// Types
+import { Track } from "types/spotify";
+
 // Styling
 import "./index.css";
 
 const Home = () => {
+	// Redux
+	const dispatch = useTypedDispatch();
+	const history = useHistory();
+
 	// Tracks
 	const [tracks, setTracks] = useState([]);
 	const [keyword, setKeyword] = useState("");
@@ -26,24 +39,16 @@ const Home = () => {
 	const [selectedTracks, setSelectedTracks] = useState([]);
 
 	// Config
-	const { token, setToken } = useContext(TokenContext);
-	const [userInfo, setUserInfo] = useState([]);
+	const token = useTypedSelector((state) => state.auth.accessToken);
+	const userInfo = useTypedSelector((state) => state.auth.userInfo);
 	const [show, setShow] = useState(false);
 	const [showAlert, setShowAlert] = useState(false);
 
-	// Get user info when the token is available
-	useEffect(() => {
-		if (token) {
-			getUserInfo(token).then((res) => {
-				setUserInfo(res);
-			});
-		}
-	}, []);
-
 	// Handle Logout
 	const handleLogout = () => {
-		setToken("");
+		dispatch(logout());
 		localStorage.removeItem("token");
+		history.push("/");
 	};
 
 	// Get data from API
@@ -78,8 +83,10 @@ const Home = () => {
 		};
 
 		// Create playlist and add the selected tracks
-		const tracksToAdd = selectedTracks.map((track) => track.uri);
-		createPlaylist(userInfo.id, playlistData, tracksToAdd, token);
+		const tracksToAdd: string[] = selectedTracks.map(
+			(track: Track) => track.uri
+		);
+		createPlaylist(userInfo?.id, playlistData, tracksToAdd, token);
 
 		// Reset State
 		setSelectedTracks([]);
@@ -96,7 +103,6 @@ const Home = () => {
 				modalShow={() => setShow(true)}
 				isDisplayed={selectedTracks.length > 0}
 				logout={handleLogout}
-				userInfo={userInfo}
 			/>
 			<FormCreatePlaylist
 				onSubmit={handleCreatePlaylist}

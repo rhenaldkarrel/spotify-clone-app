@@ -1,5 +1,12 @@
+import { useEffect } from "react";
+import { useHistory } from "react-router";
+
 // Authorization
-import { authSpotify } from "../../auth/auth";
+import { authSpotify, getToken, getUserInfo } from "../../auth/auth";
+
+// Redux
+import { login, storeUserInfo } from "../../store/authSlice";
+import { useTypedDispatch } from "../../hooks/typedReduxHooks";
 
 // Components
 import logo from "../../spotify-logo.png";
@@ -8,7 +15,18 @@ import logo from "../../spotify-logo.png";
 import "./index.css";
 
 const LoginPage = () => {
-	// return <Login onClick={authSpotify} logo={logo} />;
+	const dispatch = useTypedDispatch();
+	const history = useHistory();
+
+	useEffect(() => {
+		if (window.location.hash) {
+			const token = getToken();
+			dispatch(login(token));
+			getUserInfo(token).then((data) => dispatch(storeUserInfo(data)));
+			history.push("/create-playlist");
+		}
+	}, [dispatch, history]);
+
 	return (
 		<div className='container-welcome'>
 			<div className='welcome'>

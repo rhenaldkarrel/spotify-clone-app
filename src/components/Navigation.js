@@ -1,7 +1,19 @@
 import React from "react";
+
+// Redux
+import { useTypedSelector } from "../hooks/typedReduxHooks";
+
 import "./Navigation.css";
 
-const Navigation = ({ logo, modalShow, logout, isDisplayed, userInfo }) => {
+const Navigation = ({ logo, modalShow, logout, isDisplayed }) => {
+	// User Informations
+	const userName = useTypedSelector(
+		(state) => state.auth.userInfo?.display_name
+	);
+	const userImage = useTypedSelector(
+		(state) => state.auth.userInfo?.images[0].url
+	);
+
 	return (
 		<nav>
 			<div className='nav-container'>
@@ -10,8 +22,8 @@ const Navigation = ({ logo, modalShow, logout, isDisplayed, userInfo }) => {
 				</div>
 				<div className='nav-list'>
 					<div className='user-info'>
-						{/* <img src={userInfo.images[0].url} alt='Display Picture' /> */}
-						<p>Hello, {userInfo.display_name}!</p>
+						<img src={userImage} alt='Display Picture' />
+						<p>Hello, {userName}!</p>
 					</div>
 					<button
 						className='btn-primary btn-create'

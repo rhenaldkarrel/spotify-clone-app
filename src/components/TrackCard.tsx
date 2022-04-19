@@ -2,8 +2,15 @@ import React from "react";
 import { convertDuration } from "../functions/functions";
 import Card from "./UI/Card";
 import "./TrackCard.css";
+import { Track } from "../types/spotify";
 
-const TrackCard = ({ track, isSelected, onSelectTrack }) => {
+type TrackCardProps = {
+	track: Track;
+	isSelected: boolean;
+	onSelectTrack: any;
+};
+
+const TrackCard = ({ track, isSelected, onSelectTrack }: TrackCardProps) => {
 	return (
 		<Card className='track-card'>
 			<div className='img'>

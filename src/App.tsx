@@ -1,53 +1,52 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect } from "react";
 import {
 	BrowserRouter as Router,
 	Route,
 	Switch,
 	Redirect,
 } from "react-router-dom";
+import { getUserInfo, getToken } from "./auth/auth";
 
-// Auth
-import { getToken } from "./auth/auth";
+// Redux
+import { useTypedDispatch, useTypedSelector } from "./hooks/typedReduxHooks";
+import { login, storeUserInfo } from "./store/authSlice";
 
 // Pages
 import Home from "./pages/home/index";
 import LoginPage from "./pages/login/index";
 
-// Token Context
-import TokenContext from "./context/TokenContext";
-
 const App = () => {
-	const [token, setToken] = useState("");
-	const value = useMemo(() => ({ token, setToken }), [token]);
+	const dispatch = useTypedDispatch();
+	const isLogin = useTypedSelector((state) => state.auth.isAuthenticated);
 
 	// Check if the token is available
 	useEffect(() => {
-		if (!token) {
-			setToken(getToken());
+		if (localStorage.getItem("token")) {
+			const accessToken: string = getToken();
+			dispatch(login(accessToken));
+			getUserInfo(accessToken).then((data) => dispatch(storeUserInfo(data)));
 		}
-	}, []);
+	}, [dispatch, isLogin]);
 
 	return (
-		<TokenContext.Provider value={value}>
-			<Router>
-				<Switch>
-					<Route path='/create-playlist'>
-						{!token ? (
-							<Redirect exact from='/create-playlist' to='/' />
-						) : (
-							<Home />
-						)}
-					</Route>
-					<Route path='/'>
-						{token ? (
-							<Redirect exact from='/' to='/create-playlist' />
-						) : (
-							<LoginPage />
-						)}
-					</Route>
-				</Switch>
-			</Router>
-		</TokenContext.Provider>
+		<Router>
+			<Switch>
+				<Route path='/create-playlist'>
+					{!isLogin ? (
+						<Redirect exact from='/create-playlist' to='/' />
+					) : (
+						<Home />
+					)}
+				</Route>
+				<Route path='/'>
+					{isLogin ? (
+						<Redirect exact from='/' to='/create-playlist' />
+					) : (
+						<LoginPage />
+					)}
+				</Route>
+			</Switch>
+		</Router>
 	);
 };
 
