@@ -5,7 +5,8 @@ import {
 	Switch,
 	Redirect,
 } from "react-router-dom";
-import { getUserInfo, getToken } from "./auth/auth";
+import { getUserInfo } from "./auth/auth";
+import { getToken } from "functions/functions";
 
 // Redux
 import { useTypedDispatch, useTypedSelector } from "./hooks/typedReduxHooks";
@@ -22,7 +23,7 @@ const App = () => {
 	// Check if the token is available
 	useEffect(() => {
 		if (localStorage.getItem("token")) {
-			const accessToken: string = getToken();
+			const accessToken = getToken() as string;
 			dispatch(login(accessToken));
 			getUserInfo(accessToken).then((data) => dispatch(storeUserInfo(data)));
 		}

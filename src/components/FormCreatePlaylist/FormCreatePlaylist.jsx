@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card from "./UI/Card";
+import Card from "../UI/Card";
 import "./FormCreatePlaylist.css";
 
 const FormCreatePlaylist = ({ onClose, onSubmit, show }) => {

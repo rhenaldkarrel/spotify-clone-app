@@ -2,14 +2,15 @@ import { useEffect } from "react";
 import { useHistory } from "react-router";
 
 // Authorization
-import { authSpotify, getToken, getUserInfo } from "../../auth/auth";
+import { authSpotify, getUserInfo } from "auth/auth";
+import { getToken } from "functions/functions";
 
 // Redux
-import { login, storeUserInfo } from "../../store/authSlice";
-import { useTypedDispatch } from "../../hooks/typedReduxHooks";
+import { login, storeUserInfo } from "store/authSlice";
+import { useTypedDispatch } from "hooks/typedReduxHooks";
 
 // Components
-import logo from "../../spotify-logo.png";
+import logo from "spotify-logo.png";
 
 // Styles
 import "./index.css";
@@ -20,7 +21,7 @@ const LoginPage = () => {
 
 	useEffect(() => {
 		if (window.location.hash) {
-			const token = getToken();
+			const token = getToken() as string;
 			dispatch(login(token));
 			getUserInfo(token).then((data) => dispatch(storeUserInfo(data)));
 			history.push("/create-playlist");

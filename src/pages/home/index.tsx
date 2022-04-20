@@ -2,29 +2,26 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 // Configurations
-import { getTracks, createPlaylist } from "../../auth/api";
+import { getTracks, createPlaylist } from "auth/api";
 
 // Redux
-import { logout } from "../../store/authSlice";
-import {
-	useTypedSelector,
-	useTypedDispatch,
-} from "../../hooks/typedReduxHooks";
+import { logout } from "store/authSlice";
+import { useTypedSelector, useTypedDispatch } from "hooks/typedReduxHooks";
 
 // Components
-import logo from "../../spotify-logo.png";
-import FormCreatePlaylist from "../../components/FormCreatePlaylist";
-import SearchTracks from "../../components/SearchTracks";
-import Navigation from "../../components/Navigation";
-import Tracks from "../../components/Tracks";
-import PreviewSelectedTracks from "../../components/PreviewSelectedTracks";
-import AlertSuccess from "../../components/AlertSuccess";
-
-// Types
-import { Track } from "types/spotify";
+import logo from "spotify-logo.png";
+import FormCreatePlaylist from "components/FormCreatePlaylist/FormCreatePlaylist";
+import SearchTracks from "components/SearchTracks/SearchTracks";
+import Navigation from "components/Navigation/Navigation";
+import Tracks from "components/Tracks/Tracks";
+import PreviewSelectedTracks from "components/PreviewSelectedTracks/PreviewSelectedTracks";
+import AlertSuccess from "components/AlertSuccess/AlertSuccess";
 
 // Styling
 import "./index.css";
+
+// Types
+import { Track } from "types/spotify";
 
 const Home = () => {
 	// Redux
@@ -36,7 +33,7 @@ const Home = () => {
 	const [keyword, setKeyword] = useState("");
 
 	// Tracks to add to playlist
-	const [selectedTracks, setSelectedTracks] = useState([]);
+	const [selectedTracks, setSelectedTracks]: any[] = useState([]);
 
 	// Config
 	const token = useTypedSelector((state) => state.auth.accessToken);
@@ -83,9 +80,7 @@ const Home = () => {
 		};
 
 		// Create playlist and add the selected tracks
-		const tracksToAdd: string[] = selectedTracks.map(
-			(track: Track) => track.uri
-		);
+		const tracksToAdd = selectedTracks.map((track: Track) => track.uri);
 		createPlaylist(userInfo?.id, playlistData, tracksToAdd, token);
 
 		// Reset State

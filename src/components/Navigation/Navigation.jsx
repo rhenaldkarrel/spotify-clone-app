@@ -1,7 +1,5 @@
-import React from "react";
-
 // Redux
-import { useTypedSelector } from "../hooks/typedReduxHooks";
+import { useTypedSelector } from "hooks/typedReduxHooks";
 
 import "./Navigation.css";
 
@@ -22,7 +20,7 @@ const Navigation = ({ logo, modalShow, logout, isDisplayed }) => {
 				</div>
 				<div className='nav-list'>
 					<div className='user-info'>
-						<img src={userImage} alt='Display Picture' />
+						<img src={userImage} alt='My Avatar' />
 						<p>Hello, {userName}!</p>
 					</div>
 					<button

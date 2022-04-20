@@ -1,8 +1,7 @@
-import React from "react";
-import { convertDuration } from "../functions/functions";
-import Card from "./UI/Card";
+import { convertDuration } from "../../functions/functions";
+import Card from "../UI/Card";
 import "./TrackCard.css";
-import { Track } from "../types/spotify";
+import { Track } from "../../types/spotify";
 
 type TrackCardProps = {
 	track: Track;

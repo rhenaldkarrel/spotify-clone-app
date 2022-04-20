@@ -1,5 +1,5 @@
 import React from "react";
-import TrackCard from "./TrackCard";
+import TrackCard from "../TrackCard/TrackCard";
 import "./Tracks.css";
 
 const Tracks = ({ tracks, onSelectTrack, selectedTracks }) => {

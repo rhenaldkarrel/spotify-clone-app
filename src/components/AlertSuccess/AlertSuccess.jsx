@@ -1,5 +1,5 @@
 import "./AlertSuccess.css";
-import Card from "./UI/Card";
+import Card from "../UI/Card";
 
 const AlertSuccess = ({ header, message, show, onClose }) => {
 	if (!show) {
