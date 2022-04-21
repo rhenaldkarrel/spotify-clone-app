@@ -3,7 +3,19 @@ import { useTypedSelector } from "hooks/typedReduxHooks";
 
 import "./Navigation.css";
 
-const Navigation = ({ logo, modalShow, logout, isDisplayed }) => {
+type NavigationProps = {
+	logo: string;
+	modalShow: () => void;
+	isDisplayed: boolean;
+	logout: () => void;
+};
+
+const Navigation = ({
+	logo,
+	modalShow,
+	logout,
+	isDisplayed,
+}: NavigationProps) => {
 	// User Informations
 	const userName = useTypedSelector(
 		(state) => state.auth.userInfo?.display_name

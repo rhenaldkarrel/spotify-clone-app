@@ -1,3 +1,4 @@
+// Convert spotify's track duration to minutes and seconds
 export const convertDuration = (duration) => {
 	const minutes = Number((duration / 60000).toFixed(0));
 	let seconds = Number(((duration % 60000) / 1000).toFixed(0));

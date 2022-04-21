@@ -1,9 +1,6 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Provider } from "react-redux";
-import store from "store/store";
 import TrackCard from "./TrackCard";
-import * as APIService from "../../auth/api";
 
 const data = {
 	album: {
@@ -84,11 +81,7 @@ const data = {
 
 beforeEach(() => {
 	// eslint-disable-next-line
-	render(
-		<Provider store={store}>
-			<TrackCard track={data} onSelectTrack={() => {}} isSelected={true} />
-		</Provider>
-	);
+	render(<TrackCard track={data} onSelectTrack={() => {}} isSelected={true} />);
 });
 
 test("check if album image rendered", () => {
