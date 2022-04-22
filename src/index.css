@@ -77,3 +77,26 @@ textarea {
 	background-color: hsl(var(--bg-formEls) / 0.5);
 	color: hsl(var(--clr-text));
 }
+
+.btn-primary {
+	background-color: hsl(var(--clr-primary));
+	color: hsl(var(--clr-text));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	padding: 1em 2em;
+	border-radius: 0.3rem;
+	cursor: pointer;
+}
+
+.btn-danger {
+	border: 1px solid rgb(255, 59, 59);
+	background-color: transparent;
+	color: rgb(255, 59, 59);
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-danger:hover {
+	background-color: rgb(255, 59, 59);
+	color: hsl(var(--clr-text));
+}

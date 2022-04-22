@@ -17,15 +17,16 @@
 	gap: 1rem;
 }
 
-.nav-list .btn-create {
+.nav-list .btn-action-group {
 	position: fixed;
 	bottom: 1rem;
 	left: 1rem;
-	box-shadow: 0 1em 1em hsl(var(--clr-primary) / 0.1);
 	transition: all 0.3s ease-in-out;
+	display: flex;
+	gap: 0.88rem;
 }
 
-.nav-list .btn-create:hover {
+.nav-list button:hover {
 	transform: translateY(-0.2rem);
 }
 
@@ -38,4 +39,16 @@
 .nav-container .user-info img {
 	border-radius: 50%;
 	width: 2rem;
+}
+
+.btn-logout,
+.btn-create,
+.btn-deselectAll {
+	padding: 1em 1.5em;
+	font-size: 0.75rem;
+}
+
+.btn-deselectAll {
+	background-color: rgb(255, 59, 59) !important;
+	color: hsl(var(--clr-text)) !important;
 }

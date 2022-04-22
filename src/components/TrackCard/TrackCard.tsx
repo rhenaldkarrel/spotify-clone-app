@@ -11,7 +11,7 @@ type TrackCardProps = {
 
 const TrackCard = ({ track, isSelected, onSelectTrack }: TrackCardProps) => {
 	return (
-		<Card className='track-card'>
+		<Card className='track-card' data-testid='trackCard'>
 			<div className='img'>
 				<img src={track.album.images[0].url} alt='Album' />
 			</div>
@@ -37,7 +37,7 @@ const TrackCard = ({ track, isSelected, onSelectTrack }: TrackCardProps) => {
 				<div className='option'>
 					<div className='select-song'>
 						<button
-							className={isSelected ? " btn-deselect" : ""}
+							className={isSelected ? "btn-danger" : "btn-primary"}
 							onClick={() => onSelectTrack(track)}>
 							{!isSelected ? "Select" : "Deselect"}
 						</button>

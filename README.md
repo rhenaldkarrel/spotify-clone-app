@@ -1,4 +1,42 @@
-# Getting Started with Create React App
+# Spotify Clone App by Rhenald Karrel
+
+## Features Highlight
+
+- Hooks: implemented a lifted state in the pages only
+- Flex & Grid: implemented a handmade grid and flex layouts.
+- Responsive: mobile-friendly but still need some improvement for Safari.
+- Typescript: defined spotify's API response types and other utilities types.
+- Redux: stored the authentication informations to the store.
+- Eslint: clean code.
+- Testing: tested 2 components (TrackCard & SearchTracks) with simulating user interaction. All pass the tests.
+- MSW: Implemented MSW for mocking API async call test in home page.
+- PWA: Implemented PWA.
+- UI/UX: Implemented quite good UI/UX but still need some improvement indeed.
+- Creative stuffs: Displayed user's basic information such as display name and picture.
+- Folder Structure and Naming Conventions: tried to be as readable and contextual as possible.
+- API: Search tracks, create playlist, and get user's profile.
+
+## What Will I Do If I Have More Time
+
+- Will working on the 404/no actions state in the page later.
+- Add more integration and unit tests.
+- Refactor and improve CSS for all devices to make the UI more clean and tidy. Implement CSS modules.
+- Add some interactivity and light animations.
+- Refactor and clean the code. Also improve some logic.
+- Store more data to redux and add more configurations. (e.g: tracks data and selected tracks data, etc)
+
+## How To Use This App
+
+- Clone it
+- Go to Spotify developer dashboard
+- Create new app and adjust the configurations following the docs
+- Observe the .env.example file
+- Create a .env.local file and add your CLIENT ID from Spotify
+- Add the base url according to your need in the .env.local file
+- Run 'npm start'
+  P.S: I am using Spotify's implicit grant flow for the authentication.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

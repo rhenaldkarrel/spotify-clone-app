@@ -3,15 +3,13 @@ import userEvent from "@testing-library/user-event";
 import SearchTracks from "./SearchTracks";
 
 describe("Search tracks form", () => {
-	beforeEach(() => {
-		const setSearch = jest.fn();
-		// eslint-disable-next-line testing-library/no-render-in-setup
-		render(<SearchTracks setSearch={setSearch} />);
-	});
+	const setSearch = jest.fn();
+	const view = () => render(<SearchTracks setSearch={setSearch} />);
 
 	afterEach(cleanup);
 
 	it("all components are rendered properly", () => {
+		view();
 		const inputSearch = screen.getByPlaceholderText(/Find your track.../i);
 		const btnSearch = screen.getByRole("button", {
 			name: /Search/i,
@@ -22,6 +20,7 @@ describe("Search tracks form", () => {
 	});
 
 	it("input search can be typed", () => {
+		view();
 		const inputSearch = screen.getByPlaceholderText(/Find your track.../i);
 
 		userEvent.type(inputSearch, "How you like that");

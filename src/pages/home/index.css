@@ -41,35 +41,6 @@
 	border-radius: 0.5rem;
 }
 
-.btn-primary {
-	background-color: hsl(var(--clr-primary));
-	color: hsl(var(--clr-text));
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	border: none;
-	padding: 1em 2em;
-	border-radius: 0.3rem;
-	cursor: pointer;
-}
-
-.btn-logout,
-.btn-create {
-	padding: 1em 1.5em;
-	font-size: 0.75rem;
-}
-
-.btn-logout {
-	border: 1px solid rgb(255, 59, 59);
-	background-color: transparent;
-	color: rgb(255, 59, 59);
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-
-.btn-logout:hover {
-	background-color: rgb(255, 59, 59);
-	color: hsl(var(--clr-text));
-}
-
 @media screen and (max-width: 900px) {
 	.nav-container {
 		padding-inline: 1rem;

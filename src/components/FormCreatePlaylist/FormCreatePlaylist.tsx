@@ -32,7 +32,8 @@ const FormCreatePlaylist = ({ onClose, onSubmit, show }) => {
 						<textarea
 							id='desc'
 							required
-							placeholder='Playlist Description'></textarea>
+							placeholder='Playlist Description'
+							minLength={20}></textarea>
 					</div>
 					<div className='form-group'>
 						<button id='submit'>Create</button>

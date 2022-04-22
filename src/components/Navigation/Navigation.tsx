@@ -8,6 +8,7 @@ type NavigationProps = {
 	modalShow: () => void;
 	isDisplayed: boolean;
 	logout: () => void;
+	handleReset: () => void;
 };
 
 const Navigation = ({
@@ -15,6 +16,7 @@ const Navigation = ({
 	modalShow,
 	logout,
 	isDisplayed,
+	handleReset,
 }: NavigationProps) => {
 	// User Informations
 	const userName = useTypedSelector(
@@ -35,13 +37,23 @@ const Navigation = ({
 						<img src={userImage} alt='My Avatar' />
 						<p>Hello, {userName}!</p>
 					</div>
+					<div className='btn-action-group'>
+						<button
+							className='btn-primary btn-create'
+							style={isDisplayed ? { display: "block" } : { display: "none" }}
+							onClick={modalShow}>
+							Create Playlist
+						</button>
+						<button
+							className='btn-primary btn-danger btn-deselectAll'
+							style={isDisplayed ? { display: "block" } : { display: "none" }}
+							onClick={handleReset}>
+							Deselect All
+						</button>
+					</div>
 					<button
-						className='btn-primary btn-create'
-						style={isDisplayed ? { display: "block" } : { display: "none" }}
-						onClick={modalShow}>
-						Create Playlist
-					</button>
-					<button className='btn-primary btn-logout' onClick={logout}>
+						className='btn-primary btn-danger btn-logout'
+						onClick={logout}>
 						Logout
 					</button>
 				</div>

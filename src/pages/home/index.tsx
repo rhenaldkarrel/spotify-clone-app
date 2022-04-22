@@ -98,6 +98,7 @@ const Home = () => {
 				modalShow={() => setShow(true)}
 				isDisplayed={selectedTracks.length > 0}
 				logout={handleLogout}
+				handleReset={() => setSelectedTracks([])}
 			/>
 			<FormCreatePlaylist
 				onSubmit={handleCreatePlaylist}
