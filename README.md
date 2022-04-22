@@ -33,7 +33,7 @@
 - Observe the .env.example file
 - Create a .env.local file and add your CLIENT ID from Spotify
 - Add the base url according to your need in the .env.local file
-- Run 'npm start'
+- Run 'npm i && npm start'
   P.S: I am using Spotify's implicit grant flow for the authentication.
 
 ## Getting Started with Create React App
