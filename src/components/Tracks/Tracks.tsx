@@ -1,15 +1,8 @@
 import React from "react";
 import TrackCard from "../TrackCard/TrackCard";
 import "./Tracks.css";
-import { Track } from "types/spotify";
 
-type TracksProps = {
-	tracks: Track[];
-	onSelectTrack: (track: Track) => void;
-	selectedTracks?: Track[];
-};
-
-const Tracks = ({ tracks, onSelectTrack, selectedTracks }: TracksProps) => {
+const Tracks = ({ tracks, onSelectTrack, selectedTracks }) => {
 	function renderTrackCards() {
 		return tracks.map((track) => {
 			return (

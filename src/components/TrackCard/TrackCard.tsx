@@ -6,7 +6,7 @@ import { Artist } from "types/spotify";
 type TrackCardProps = {
 	track: Track;
 	isSelected: boolean;
-	onSelectTrack: any;
+	onSelectTrack: (track: Track) => void;
 };
 
 const TrackCard = ({ track, isSelected, onSelectTrack }: TrackCardProps) => {
