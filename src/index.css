@@ -55,11 +55,11 @@ select {
 body {
 	font-family: "SF UI Display", sans-serif;
 	color: hsl(var(--clr-text));
-	padding: 1rem;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	padding: 0;
 	background: hsl(var(--bg-body));
+	font-size: 16px;
 }
 
 code {

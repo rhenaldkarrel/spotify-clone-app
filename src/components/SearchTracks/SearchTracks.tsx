@@ -15,6 +15,7 @@ const SearchTracks = ({ onSubmit, onChange }: SearchTracksProps) => {
 					type='text'
 					placeholder='Find your track...'
 					onChange={onChange}
+					required
 				/>
 				<button>Search</button>
 			</form>

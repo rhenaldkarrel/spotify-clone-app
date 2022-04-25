@@ -16,6 +16,7 @@ import Navigation from "components/Navigation/Navigation";
 import Tracks from "components/Tracks/Tracks";
 import PreviewSelectedTracks from "components/PreviewSelectedTracks/PreviewSelectedTracks";
 import AlertSuccess from "components/AlertSuccess/AlertSuccess";
+import ErrorNotFound from "components/404notfound/ErrorNotFound";
 
 // Styling
 import "./index.css";
@@ -29,17 +30,17 @@ const Home = () => {
 	const history = useHistory();
 
 	// Tracks
-	const [tracks, setTracks] = useState([]);
-	const [keyword, setKeyword] = useState("");
+	const [tracks, setTracks] = useState<Track[]>([]);
+	const [keyword, setKeyword] = useState<string>("");
 
 	// Tracks to add to playlist
-	const [selectedTracks, setSelectedTracks]: any[] = useState([]);
+	const [selectedTracks, setSelectedTracks] = useState<Track[]>([]);
 
 	// Config
 	const token = useTypedSelector((state) => state.auth.accessToken);
 	const userInfo = useTypedSelector((state) => state.auth.userInfo);
-	const [show, setShow] = useState(false);
-	const [showAlert, setShowAlert] = useState(false);
+	const [show, setShow] = useState<boolean>(false);
+	const [showAlert, setShowAlert] = useState<boolean>(false);
 
 	// Handle Logout
 	const handleLogout = () => {
@@ -49,13 +50,13 @@ const Home = () => {
 	};
 
 	// Get data from API
-	const handleSearch = (e) => {
+	const handleSearch = (e: React.FormEvent): void => {
 		e.preventDefault();
 		getTracks(keyword, token).then((data) => setTracks(data));
 	};
 
 	// Handle select track
-	const handleSelect = (track) => {
+	const handleSelect = (track: Track): void => {
 		const isSelected = selectedTracks.find(
 			(selectedTrack) => selectedTrack === track
 		);
@@ -70,13 +71,16 @@ const Home = () => {
 	};
 
 	// Handle create playlist
-	const handleCreatePlaylist = (e) => {
+	const handleCreatePlaylist = (e: React.FormEvent): void => {
 		e.preventDefault();
+
+		const { title } = e.target as HTMLFormElement;
+		const { desc } = e.target as HTMLFormElement;
 
 		// Retrieve the user's input
 		const playlistData = {
-			name: e.target.title.value,
-			description: e.target.desc.value,
+			name: title,
+			description: desc,
 		};
 
 		// Create playlist and add the selected tracks
@@ -89,7 +93,8 @@ const Home = () => {
 		setShowAlert(true);
 	};
 
-	const handleChange = (e) => setKeyword(e.target.value);
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+		setKeyword(e.target.value);
 
 	return (
 		<>
@@ -119,11 +124,16 @@ const Home = () => {
 					</p>
 				</div>
 				<SearchTracks onChange={handleChange} onSubmit={handleSearch} />
-				<Tracks
-					tracks={tracks}
-					onSelectTrack={handleSelect}
-					selectedTracks={selectedTracks}
-				/>
+				{tracks.length > 0 ? (
+					<Tracks
+						tracks={tracks}
+						onSelectTrack={handleSelect}
+						selectedTracks={selectedTracks}
+					/>
+				) : (
+					<ErrorNotFound />
+				)}
+
 				{selectedTracks.length > 0 ? (
 					<div className='section-introduction' style={{ marginTop: "4rem" }}>
 						<h1 className='title'>Create Playlists</h1>

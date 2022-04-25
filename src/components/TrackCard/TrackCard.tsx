@@ -2,7 +2,7 @@ import { convertDuration } from "../../functions/functions";
 import Card from "../UI/Card";
 import "./TrackCard.css";
 import { Track } from "../../types/spotify";
-
+import { Artist } from "types/spotify";
 type TrackCardProps = {
 	track: Track;
 	isSelected: boolean;
@@ -21,7 +21,9 @@ const TrackCard = ({ track, isSelected, onSelectTrack }: TrackCardProps) => {
 						<p>{track.name}</p>
 					</div>
 					<div className='artist'>
-						<p>{track.artists.map((artist) => artist.name).join(", ")}</p>
+						<p>
+							{track.artists.map((artist: Artist) => artist.name).join(", ")}
+						</p>
 					</div>
 				</div>
 				<div className='album-info'>

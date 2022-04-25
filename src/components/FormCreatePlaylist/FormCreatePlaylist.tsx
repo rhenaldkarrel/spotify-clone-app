@@ -3,7 +3,17 @@ import React from "react";
 import Card from "../UI/Card";
 import "./FormCreatePlaylist.css";
 
-const FormCreatePlaylist = ({ onClose, onSubmit, show }) => {
+type FormCreatePlaylistProps = {
+	onClose: () => void;
+	onSubmit: (event: React.FormEvent) => void;
+	show: boolean;
+};
+
+const FormCreatePlaylist = ({
+	onClose,
+	onSubmit,
+	show,
+}: FormCreatePlaylistProps) => {
 	if (!show) {
 		return null;
 	}

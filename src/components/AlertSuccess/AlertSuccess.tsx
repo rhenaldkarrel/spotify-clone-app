@@ -1,7 +1,19 @@
 import "./AlertSuccess.css";
 import Card from "../UI/Card";
 
-const AlertSuccess = ({ header, message, show, onClose }) => {
+type AlertSuccessProps = {
+	header: string;
+	message: string;
+	show: boolean;
+	onClose: () => void;
+};
+
+const AlertSuccess = ({
+	header,
+	message,
+	show,
+	onClose,
+}: AlertSuccessProps) => {
 	if (!show) {
 		return null;
 	}
