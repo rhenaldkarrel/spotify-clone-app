@@ -1,23 +1,23 @@
-/* Serach Tracks */
-#tracks .search-container {
+/* Search Tracks */
+.searchContainer {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 2rem;
 }
 
-#tracks form {
+.formSearch {
 	width: 30rem;
 	display: flex;
 	align-items: center;
 }
 
-#tracks form input {
+form .inputSearch {
 	height: 100%;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
 
-#tracks form button {
+form .btnSearch {
 	background-color: hsl(var(--clr-primary));
 	text-transform: uppercase;
 	letter-spacing: 2px;

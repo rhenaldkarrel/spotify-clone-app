@@ -13,7 +13,7 @@ import { useTypedDispatch } from "hooks/typedReduxHooks";
 import logo from "spotify-logo.png";
 
 // Styles
-import "./index.css";
+import styles from "./index.module.css";
 
 const LoginPage = () => {
 	const dispatch = useTypedDispatch();
@@ -29,8 +29,8 @@ const LoginPage = () => {
 	}, [dispatch, history]);
 
 	return (
-		<div className='container-welcome'>
-			<div className='welcome'>
+		<div className={styles.containerWelcome}>
+			<div className={styles.welcome}>
 				<img src={logo} alt='Spotify Logo' />
 				<h1>&#x1F44B; Welcome to Rhenald's Spotify Clone App!</h1>
 				<button onClick={authSpotify} className='btn-primary'>

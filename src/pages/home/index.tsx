@@ -19,7 +19,7 @@ import AlertSuccess from "components/AlertSuccess/AlertSuccess";
 import ErrorNotFound from "components/404notfound/ErrorNotFound";
 
 // Styling
-import "./index.css";
+import styles from "./index.module.css";
 
 // Types
 import { Track } from "types/spotify";
@@ -116,10 +116,10 @@ const Home = () => {
 				show={showAlert}
 				onClose={() => setShowAlert(false)}
 			/>
-			<div id='tracks'>
-				<div className='section-introduction'>
+			<div className={styles.tracks}>
+				<div className={styles.sectionIntroduction}>
 					<h1 className='title'>Find and Create Playlist</h1>
-					<p className='desc'>
+					<p className={styles.desc}>
 						Find a track, select it, and create your personal playlist
 					</p>
 				</div>
@@ -135,12 +135,14 @@ const Home = () => {
 				)}
 
 				{selectedTracks.length > 0 ? (
-					<div className='section-introduction' style={{ marginTop: "4rem" }}>
+					<div
+						className={styles.sectionIntroduction}
+						style={{ marginTop: "4rem" }}>
 						<h1 className='title'>Create Playlists</h1>
-						<p className='desc'>
+						<p className={styles.desc}>
 							Create your personal playlist from the selected tracks.
 						</p>
-						<div className='preview-selected-tracks'>
+						<div className={styles.previewSelectedTracks}>
 							<PreviewSelectedTracks selectedTracks={selectedTracks} />
 						</div>
 					</div>

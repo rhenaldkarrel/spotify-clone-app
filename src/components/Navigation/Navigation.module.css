@@ -1,0 +1,74 @@
+/* Navbar */
+.navContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-inline: 3rem;
+	padding-block: 1rem;
+	box-shadow: 0 0 3em hsl(var(--clr-black) / 0.5);
+}
+
+.navContainer img {
+	width: 3rem;
+}
+
+.navList {
+	display: flex;
+	gap: 1rem;
+}
+
+.navList .btnActionGroup {
+	position: fixed;
+	bottom: 1rem;
+	left: 1rem;
+	transition: all 0.3s ease-in-out;
+	display: flex;
+	gap: 0.88rem;
+}
+
+.navList .btnActionGroup button:hover {
+	transform: translateY(-0.2rem);
+}
+
+.navContainer .userInfo {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.navContainer .userInfo img {
+	border-radius: 50%;
+	width: 2rem;
+}
+
+.btnLogout,
+.btnCreate,
+.btnDeselectAll {
+	padding: 1em 1.5em;
+	font-size: 0.75rem;
+}
+
+.btnLogout:hover {
+	background-color: rgb(255, 59, 59);
+	color: hsl(var(--clr-text));
+}
+
+.btnDeselectAll {
+	background-color: rgb(255, 59, 59);
+	color: hsl(var(--clr-text));
+}
+
+@media screen and (max-width: 900px) {
+	.navContainer {
+		padding-inline: 1rem;
+		padding-block: 0.5rem;
+	}
+
+	.navList {
+		gap: 0.5rem;
+	}
+
+	.navList button {
+		padding: 0.75em;
+	}
+}

@@ -1,5 +1,5 @@
 /* Layout */
-.preview-selected-tracks {
+.previewSelectedTracks {
 	max-width: 100%;
 	width: fit-content;
 	display: flex;
@@ -9,11 +9,11 @@
 	overflow-x: auto;
 }
 
-#tracks {
+.tracks {
 	padding: 2rem;
 }
 
-#tracks .section-introduction {
+.tracks .sectionIntroduction {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -21,37 +21,22 @@
 	margin-bottom: 2rem;
 }
 
-#tracks .section-introduction .desc {
+.tracks .sectionIntroduction .desc {
 	font-size: 0.88rem;
 	color: hsl(var(--clr-text) / 0.5);
 }
 
 /* Utilities */
-.preview-selected-tracks::-webkit-scrollbar {
+.previewSelectedTracks::-webkit-scrollbar {
 	height: 1rem;
 }
 
-.preview-selected-tracks::-webkit-scrollbar-track {
+.previewSelectedTracks::-webkit-scrollbar-track {
 	background-color: hsl(var(--clr-text) / 0.5);
 	border-radius: 0.5rem;
 }
 
-.preview-selected-tracks::-webkit-scrollbar-thumb {
+.previewSelectedTracks::-webkit-scrollbar-thumb {
 	background: hsl(var(--clr-grey));
 	border-radius: 0.5rem;
-}
-
-@media screen and (max-width: 900px) {
-	.nav-container {
-		padding-inline: 1rem;
-		padding-block: 0.5rem;
-	}
-
-	.nav-list {
-		gap: 0.5rem;
-	}
-
-	.nav-list button {
-		padding: 0.75em;
-	}
 }

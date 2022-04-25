@@ -95,8 +95,3 @@ textarea {
 	color: rgb(255, 59, 59);
 	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-
-.btn-danger:hover {
-	background-color: rgb(255, 59, 59);
-	color: hsl(var(--clr-text));
-}

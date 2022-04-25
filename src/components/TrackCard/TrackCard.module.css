@@ -1,5 +1,5 @@
 /* Layout */
-.track-card {
+.trackCard {
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -8,54 +8,54 @@
 	--radius: 0.5rem;
 }
 
-.track-card .track-informations {
+.trackCard .trackInformations {
 	display: flex;
 	flex-grow: 1;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.track-card .option {
+.trackCard .option {
 	width: 7rem;
 }
 
 /* Contents */
-.track-card .img {
+.trackCard .img {
 	width: 3.5rem;
 }
 
-.track-card .song-title {
+.trackCard .songTitle {
 	font-size: 1rem;
 	margin-bottom: 0.4rem;
 	font-weight: bold;
 }
 
-.track-card .artist {
+.trackCard .artist {
 	font-size: 0.88rem;
 	color: hsl(var(--clr-text) / 0.5);
 }
 
-.track-card .img img {
+.trackCard .img img {
 	width: 100%;
 	border-radius: 0.3rem;
 }
 
-.track-card .content > div:where(:not(:last-child)) {
+.trackCard .content > div:where(:not(:last-child)) {
 	margin-bottom: 1rem;
 }
 
-.track-card:hover {
+.trackCard:hover {
 	background-color: hsl(var(--clr-grey) / 0.3);
 }
 
-.track-card .album-title {
+.trackCard .albumTitle {
 	font-size: 1rem;
 	font-weight: semi-bold;
 	color: hsl(var(--clr-text) / 0.5);
 }
 
 /* Utilities */
-.select-song button {
+.selectSong button {
 	color: hsl(var(--clr-text));
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -68,34 +68,39 @@
 	transition: box-shadow 0.2s ease-in-out;
 }
 
-.select-song .btn-primary {
+.selectSong .btnSelect {
 	background-color: hsl(var(--clr-primary));
 }
 
-.select-song .btn-danger {
+.selectSong .btnDeselect {
 	background-color: hsl(var(--clr-primary));
 	border: 1px solid rgb(255, 59, 59);
 	background-color: transparent;
 	color: rgb(255, 59, 59);
 }
 
-.select-song .btn-primary:hover {
+.btnDeselect:hover {
+	background-color: rgb(255, 59, 59);
+	color: hsl(var(--clr-text));
+}
+
+.selectSong .btnSelect:hover {
 	box-shadow: 0 0 0.5em hsl(var(--clr-primary) / 0.5);
 }
 
 /* Responsive */
 @media screen and (max-width: 850px) {
-	.track-card {
+	.trackCard {
 		padding: 1.5rem;
 	}
 
-	.track-card .track-informations {
+	.trackCard .trackInformations {
 		flex-direction: column;
 		gap: 0.88rem;
 		align-items: flex-start;
 	}
 
-	.track-card .img {
+	.trackCard .img {
 		width: 30%;
 	}
 }

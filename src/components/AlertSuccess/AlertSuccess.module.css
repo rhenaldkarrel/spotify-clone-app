@@ -1,4 +1,4 @@
-.alert-container {
+.alertContainer {
 	position: fixed;
 	z-index: 99;
 	top: 0;
@@ -12,7 +12,7 @@
 	background: hsl(var(--bg-formEls) / 0.8);
 }
 
-.alert-success {
+.alertSuccess {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
@@ -21,14 +21,14 @@
 	padding-block: 3rem;
 }
 
-.alert-success .information-container {
+.alertSuccess .informationContainer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.7rem;
 }
 
-.alert-success .success-icon {
+.alertSuccess .successIcon {
 	display: inline-block;
 	transform: rotate(45deg);
 	height: 3rem;
@@ -37,7 +37,7 @@
 	border-right: 0.5em solid hsl(var(--clr-primary));
 }
 
-.alert-success .alert-message {
+.alertSuccess .alertMessage {
 	font-size: 0.88rem;
 	color: hsl(var(--clr-text) / 0.5);
 }

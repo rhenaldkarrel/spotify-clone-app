@@ -1,5 +1,5 @@
 import React from "react";
-import "./SearchTracks.css";
+import styles from "./SearchTracks.module.css";
 
 type SearchTracksProps = {
 	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -8,16 +8,16 @@ type SearchTracksProps = {
 
 const SearchTracks = ({ onSubmit, onChange }: SearchTracksProps) => {
 	return (
-		<div className='search-container'>
-			<form action='#' onSubmit={onSubmit}>
+		<div className={styles.searchContainer}>
+			<form action='#' onSubmit={onSubmit} className={styles.formSearch}>
 				<input
-					className='input-search'
+					className={styles.inputSearch}
 					type='text'
 					placeholder='Find your track...'
 					onChange={onChange}
 					required
 				/>
-				<button>Search</button>
+				<button className={styles.btnSearch}>Search</button>
 			</form>
 		</div>
 	);

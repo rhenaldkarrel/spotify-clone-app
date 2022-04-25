@@ -1,14 +1,14 @@
-import "./ErrorNotFound.css";
+import styles from "./ErrorNotFound.module.css";
 
 const ErrorNotFound = () => {
 	return (
-		<div className='not-found-container'>
-			<div className='not-found-card'>
-				<div className='not-found-emoji'>&#128580;</div>
-				<div className='not-found-heading'>
+		<div className={styles.notFoundContainer}>
+			<div className={styles.notFoundCard}>
+				<div className={styles.notFoundEmoji}>&#128580;</div>
+				<div className='alert-title'>
 					<h2>Oh boy! No tracks?!</h2>
 				</div>
-				<div className='not-found-message'>
+				<div className={styles.notFoundMessage}>
 					Hmm, make sure you have typed the right keyword...
 				</div>
 			</div>

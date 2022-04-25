@@ -1,10 +1,10 @@
-.not-found-container {
+.notFoundContainer {
 	display: flex;
 	justify-content: center;
 	width: 100%;
 }
 
-.not-found-card {
+.notFoundCard {
 	display: flex;
 	padding: 1.5rem;
 	justify-content: center;
@@ -16,11 +16,11 @@
 	gap: 1rem;
 }
 
-.not-found-emoji {
+.notFoundEmoji {
 	font-size: 4rem;
 }
 
-.not-found-message {
+.notFoundMessage {
 	font-size: 1rem;
 	color: hsl(var(--clr-grey));
 	width: calc(100% - 20%);

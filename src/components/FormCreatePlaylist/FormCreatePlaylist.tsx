@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "../UI/Card";
-import "./FormCreatePlaylist.css";
+import styles from "./FormCreatePlaylist.module.css";
 
 type FormCreatePlaylistProps = {
 	onClose: () => void;
@@ -19,16 +19,16 @@ const FormCreatePlaylist = ({
 	}
 
 	return (
-		<div className='form-container'>
-			<Card className='form-card'>
-				<div className='title'>
+		<div className={styles.formContainer}>
+			<Card className={styles.formCard}>
+				<div className={styles.title}>
 					<h2>Create Playlist</h2>
-					<button className='btn-close' onClick={onClose}>
+					<button className={styles.btnClose} onClick={onClose}>
 						X
 					</button>
 				</div>
 				<form className='form' onSubmit={onSubmit}>
-					<div className='form-group'>
+					<div className={styles.formGroup}>
 						<label htmlFor='title'>Title</label>
 						<input
 							type='text'
@@ -37,7 +37,7 @@ const FormCreatePlaylist = ({
 							placeholder='Playlist Title'
 						/>
 					</div>
-					<div className='form-group'>
+					<div className={styles.formGroup}>
 						<label htmlFor='desc'>Description</label>
 						<textarea
 							id='desc'
@@ -45,7 +45,7 @@ const FormCreatePlaylist = ({
 							placeholder='Playlist Description'
 							minLength={20}></textarea>
 					</div>
-					<div className='form-group'>
+					<div className={styles.formGroup}>
 						<button id='submit'>Create</button>
 					</div>
 				</form>

@@ -1,17 +1,17 @@
 import Card from "../UI/Card";
-import "./PreviewSelectedTracks.css";
+import styles from "./PreviewSelectedTracks.module.css";
 import { Track } from "types/spotify";
 
 const PreviewSelectedTracks = ({ selectedTracks }) => {
 	return selectedTracks.map((track: Track) => (
-		<Card className='card-selected-tracks' key={track.id}>
-			<div className='album-cover'>
+		<Card className={styles.cardSelectedTracks} key={track.id}>
+			<div className={styles.albumCover}>
 				<img src={track.album.images[0].url} alt={track.album.name} />
 			</div>
-			<div className='prev-song-title'>
+			<div className={styles.prevSongTitle}>
 				<p>{track.name}</p>
 			</div>
-			<div className='prev-artist'>
+			<div className={styles.prevArtist}>
 				<p>{track.artists.map((artist) => artist.name).join(", ")}</p>
 			</div>
 		</Card>

@@ -1,5 +1,5 @@
 /* Login */
-.container-welcome {
+.containerWelcome {
 	display: grid;
 	place-items: center;
 	background: linear-gradient(

@@ -1,4 +1,4 @@
-import "./AlertSuccess.css";
+import styles from "./AlertSuccess.module.css";
 import Card from "../UI/Card";
 
 type AlertSuccessProps = {
@@ -18,16 +18,16 @@ const AlertSuccess = ({
 		return null;
 	}
 	return (
-		<div className='alert-container'>
-			<Card className='alert-success'>
+		<div className={styles.alertContainer}>
+			<Card className={styles.alertSuccess}>
 				<div className='alert-icon'>
-					<div className='success-icon'></div>
+					<div className={styles.successIcon}></div>
 				</div>
-				<div className='information-container'>
+				<div className={styles.informationContainer}>
 					<div className='alert-title'>
 						<h1 className='title'>{header}</h1>
 					</div>
-					<div className='alert-message'>
+					<div className={styles.alertMessage}>
 						<p>{message}</p>
 					</div>
 				</div>

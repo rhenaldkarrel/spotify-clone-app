@@ -1,7 +1,7 @@
 // Redux
 import { useTypedSelector } from "hooks/typedReduxHooks";
 
-import "./Navigation.css";
+import styles from "./Navigation.module.css";
 
 type NavigationProps = {
 	logo: string;
@@ -28,31 +28,31 @@ const Navigation = ({
 
 	return (
 		<nav>
-			<div className='nav-container'>
+			<div className={styles.navContainer}>
 				<div className='nav-brand'>
 					<img src={logo} alt='Spotify Logo' />
 				</div>
-				<div className='nav-list'>
-					<div className='user-info'>
+				<div className={styles.navList}>
+					<div className={styles.userInfo}>
 						<img src={userImage} alt='My Avatar' />
 						<p>Hello, {userName}!</p>
 					</div>
-					<div className='btn-action-group'>
+					<div className={styles.btnActionGroup}>
 						<button
-							className='btn-primary btn-create'
+							className={`btn-primary ${styles.btnCreate}`}
 							style={isDisplayed ? { display: "block" } : { display: "none" }}
 							onClick={modalShow}>
 							Create Playlist
 						</button>
 						<button
-							className='btn-primary btn-danger btn-deselectAll'
+							className={`btn-primary btn-danger ${styles.btnDeselectAll}`}
 							style={isDisplayed ? { display: "block" } : { display: "none" }}
 							onClick={handleReset}>
 							Deselect All
 						</button>
 					</div>
 					<button
-						className='btn-primary btn-danger btn-logout'
+						className={`btn-primary btn-danger ${styles.btnLogout}`}
 						onClick={logout}>
 						Logout
 					</button>
