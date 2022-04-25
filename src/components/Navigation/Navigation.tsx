@@ -39,21 +39,19 @@ const Navigation = ({
 					</div>
 					<div className={styles.btnActionGroup}>
 						<button
-							className={`btn-primary ${styles.btnCreate}`}
+							className={styles.btnCreate}
 							style={isDisplayed ? { display: "block" } : { display: "none" }}
 							onClick={modalShow}>
 							Create Playlist
 						</button>
 						<button
-							className={`btn-primary btn-danger ${styles.btnDeselectAll}`}
+							className={styles.btnDeselectAll}
 							style={isDisplayed ? { display: "block" } : { display: "none" }}
 							onClick={handleReset}>
 							Deselect All
 						</button>
 					</div>
-					<button
-						className={`btn-primary btn-danger ${styles.btnLogout}`}
-						onClick={logout}>
+					<button className={styles.btnLogout} onClick={logout}>
 						Logout
 					</button>
 				</div>

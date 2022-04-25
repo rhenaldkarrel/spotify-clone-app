@@ -48,6 +48,29 @@
 	font-size: 0.75rem;
 }
 
+.btnCreate {
+	background-color: hsl(var(--clr-primary));
+	color: hsl(var(--clr-text));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	padding: 1em 2em;
+	border-radius: 0.3rem;
+	cursor: pointer;
+}
+
+.btnLogout {
+	padding: 1em;
+	border-radius: 0.3rem;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: 1px solid rgb(255, 59, 59);
+	background-color: transparent;
+	color: rgb(255, 59, 59);
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
 .btnLogout:hover {
 	background-color: rgb(255, 59, 59);
 	color: hsl(var(--clr-text));
@@ -56,6 +79,11 @@
 .btnDeselectAll {
 	background-color: rgb(255, 59, 59);
 	color: hsl(var(--clr-text));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	border-radius: 0.3rem;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {
