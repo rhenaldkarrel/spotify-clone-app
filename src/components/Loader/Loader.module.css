@@ -1,0 +1,33 @@
+.container {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+}
+
+.loader {
+	border: 0.5em solid hsl(var(--bg-formEls));
+	border-top: 0.5em solid hsl(var(--clr-grey));
+	aspect-ratio: 1;
+	width: 4rem;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

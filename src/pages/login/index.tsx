@@ -7,7 +7,7 @@ import { getToken } from "functions/functions";
 
 // Redux
 import { login, storeUserInfo } from "store/authSlice";
-import { useTypedDispatch, useTypedSelector } from "hooks/typedReduxHooks";
+import { useTypedDispatch } from "hooks/typedReduxHooks";
 
 // Components
 import logo from "spotify-logo.png";
@@ -18,7 +18,6 @@ import styles from "./index.module.css";
 const LoginPage = () => {
 	const dispatch = useTypedDispatch();
 	const history = useHistory();
-	const isLogin = useTypedSelector((state) => state.auth.isAuthenticated);
 
 	// Check if the token is available
 	useEffect(() => {
@@ -28,7 +27,7 @@ const LoginPage = () => {
 			getUserInfo(accessToken).then((data) => dispatch(storeUserInfo(data)));
 			history.push("/create-playlist");
 		}
-	}, [dispatch, isLogin, history]);
+	}, [dispatch, history]);
 
 	return (
 		<div className={styles.containerWelcome}>
