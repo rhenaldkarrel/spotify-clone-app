@@ -6,6 +6,12 @@ import { getTracks, createPlaylist } from "auth/api";
 
 // Redux
 import { logout } from "store/authSlice";
+import {
+	setTracks,
+	selectTrack,
+	deselectTrack,
+	clearSelectedTracks,
+} from "store/tracksSlice";
 import { useTypedSelector, useTypedDispatch } from "hooks/typedReduxHooks";
 
 // Components
@@ -30,29 +36,31 @@ const Home = () => {
 	const history = useHistory();
 
 	// Tracks
-	const [tracks, setTracks] = useState<Track[]>([]);
+	const tracks = useTypedSelector((state) => state.tracks.tracks);
 	const [keyword, setKeyword] = useState<string>("");
 
 	// Tracks to add to playlist
-	const [selectedTracks, setSelectedTracks] = useState<Track[]>([]);
+	const selectedTracks = useTypedSelector(
+		(state) => state.tracks.selectedTracks
+	);
 
 	// Config
 	const token = useTypedSelector((state) => state.auth.accessToken);
 	const userInfo = useTypedSelector((state) => state.auth.userInfo);
 	const [show, setShow] = useState<boolean>(false);
 	const [showAlert, setShowAlert] = useState<boolean>(false);
+	const [showError, setShowError] = useState<boolean>(false);
 
 	// Handle Logout
 	const handleLogout = () => {
 		dispatch(logout());
-		localStorage.removeItem("token");
 		history.push("/");
 	};
 
 	// Get data from API
 	const handleSearch = (e: React.FormEvent): void => {
 		e.preventDefault();
-		getTracks(keyword, token).then((data) => setTracks(data));
+		getTracks(keyword, token).then((data) => dispatch(setTracks(data)));
 	};
 
 	// Handle select track
@@ -62,20 +70,18 @@ const Home = () => {
 		);
 
 		if (isSelected) {
-			setSelectedTracks(
-				selectedTracks.filter((selectedTrack) => selectedTrack !== track)
-			);
+			dispatch(deselectTrack(track));
 		} else {
-			setSelectedTracks((prev) => [...prev, track]);
+			dispatch(selectTrack(track));
 		}
 	};
 
 	// Handle create playlist
-	const handleCreatePlaylist = (e: React.FormEvent): void => {
+	const handleCreatePlaylist = (e: React.FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
 
-		const { title } = e.target as HTMLFormElement;
-		const { desc } = e.target as HTMLFormElement;
+		const title = (document.getElementById("title") as HTMLInputElement).value;
+		const desc = (document.getElementById("desc") as HTMLTextAreaElement).value;
 
 		// Retrieve the user's input
 		const playlistData = {
@@ -85,12 +91,20 @@ const Home = () => {
 
 		// Create playlist and add the selected tracks
 		const tracksToAdd = selectedTracks.map((track: Track) => track.uri);
-		createPlaylist(userInfo?.id, playlistData, tracksToAdd, token);
+		try {
+			createPlaylist(userInfo.id, playlistData, tracksToAdd, token).then(() => {
+				dispatch(clearSelectedTracks());
+			});
+		} catch (error) {
+			setShowError(true);
+		}
 
-		// Reset State
-		setSelectedTracks([]);
-		setShow(false);
-		setShowAlert(true);
+		if (!showError) {
+			setShow(false);
+			setShowAlert(true);
+		} else {
+			alert("Something went wrong, please try again");
+		}
 	};
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
@@ -103,7 +117,7 @@ const Home = () => {
 				modalShow={() => setShow(true)}
 				isDisplayed={selectedTracks.length > 0}
 				logout={handleLogout}
-				handleReset={() => setSelectedTracks([])}
+				handleReset={() => dispatch(clearSelectedTracks())}
 			/>
 			<FormCreatePlaylist
 				onSubmit={handleCreatePlaylist}

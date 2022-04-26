@@ -19,7 +19,7 @@ export const getTracks = async (keyword: string, token: string) => {
 		const data = await res.tracks.items;
 		return data;
 	} catch (e) {
-		console.log(e);
+		throw e;
 	}
 };
 
@@ -42,13 +42,14 @@ export const createPlaylist = async (
 					name: playlistData.name,
 					description: playlistData.description,
 					public: false,
+					collaborative: false,
 				}),
 			}
 		);
 		const playlist = await response.json();
 		addTracksToPlaylist(playlist.id, tracksToAdd, token);
 	} catch (e) {
-		console.log(e);
+		throw e;
 	}
 };
 
@@ -73,6 +74,6 @@ export const addTracksToPlaylist = async (
 		);
 		return response;
 	} catch (e) {
-		console.log(e);
+		throw e;
 	}
 };

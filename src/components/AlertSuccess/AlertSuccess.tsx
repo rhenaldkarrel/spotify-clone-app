@@ -31,10 +31,8 @@ const AlertSuccess = ({
 						<p>{message}</p>
 					</div>
 				</div>
-				<div className='alert-button'>
-					<button className='btn-primary' onClick={onClose}>
-						Close
-					</button>
+				<div className={styles.alertButton}>
+					<button onClick={onClose}>Close</button>
 				</div>
 			</Card>
 		</div>

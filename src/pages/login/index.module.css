@@ -23,3 +23,15 @@
 .welcome img {
 	width: 5rem;
 }
+
+.btnLogin {
+	background-color: hsl(var(--clr-primary));
+	color: hsl(var(--clr-text));
+	text-transform: uppercase;
+	font-size: 0.88rem;
+	letter-spacing: 2px;
+	border: none;
+	padding: 1em 2em;
+	border-radius: 0.3rem;
+	cursor: pointer;
+}

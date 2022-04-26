@@ -5,7 +5,7 @@ import styles from "./FormCreatePlaylist.module.css";
 
 type FormCreatePlaylistProps = {
 	onClose: () => void;
-	onSubmit: (event: React.FormEvent) => void;
+	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 	show: boolean;
 };
 
