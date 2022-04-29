@@ -17,9 +17,10 @@ describe("Create playlist page", () => {
 		expect(sectionTitle).toBeInTheDocument();
 	});
 
+	// still error
 	it("should render one card when data was fetched", async () => {
 		view();
-		const trackCards = await screen.findAllByTestId(/trackCard/i);
+		const trackCards = await screen.findAllByTestId("trackCard");
 		expect(trackCards.length).toEqual(1);
 	});
 });

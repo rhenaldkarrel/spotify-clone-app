@@ -3,8 +3,10 @@ import userEvent from "@testing-library/user-event";
 import SearchTracks from "./SearchTracks";
 
 describe("Search tracks form", () => {
-	const setSearch = jest.fn();
-	const view = () => render(<SearchTracks setSearch={setSearch} />);
+	const onSubmit = jest.fn();
+	const onChange = jest.fn();
+	const view = () =>
+		render(<SearchTracks onSubmit={onSubmit} onChange={onChange} />);
 
 	afterEach(cleanup);
 
