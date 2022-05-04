@@ -1,5 +1,5 @@
 import Card from "../UI/Card";
-import styles from "./PreviewSelectedTracks.module.css";
+import styles from "./index.module.css";
 import { Track } from "types/spotify";
 
 type PrevSelectedTracksProps = {

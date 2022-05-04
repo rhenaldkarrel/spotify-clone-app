@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import ErrorNotFound from "./ErrorNotFound";
+import ErrorNotFound from ".";
 
 describe("Error Not Found", () => {
 	it("should render the component", () => {

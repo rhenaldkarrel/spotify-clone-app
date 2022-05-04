@@ -11,7 +11,7 @@ import { useTypedSelector } from "hooks/typedReduxHooks";
 import Login from "pages/login";
 import PrivateRouter from "./privateRouter";
 import { Routers } from "./root.routers";
-import Loader from "components/Loader/Loader";
+import Loader from "components/Loader";
 
 const RouterList = () => {
 	const isAuthenticated = useTypedSelector(

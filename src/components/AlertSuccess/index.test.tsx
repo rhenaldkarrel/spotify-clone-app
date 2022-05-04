@@ -1,6 +1,6 @@
 import { screen, render, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import AlertSuccess from "./AlertSuccess";
+import AlertSuccess from ".";
 
 describe("Alert Success", () => {
 	const header = "Success Message";

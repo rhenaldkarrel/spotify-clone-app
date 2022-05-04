@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "../UI/Card";
-import styles from "./FormCreatePlaylist.module.css";
+import styles from "./index.module.css";
 
 type FormCreatePlaylistProps = {
 	onClose: () => void;

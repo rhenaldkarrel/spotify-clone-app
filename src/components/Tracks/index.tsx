@@ -1,5 +1,5 @@
-import TrackCard from "../TrackCard/TrackCard";
-import styles from "./Tracks.module.css";
+import TrackCard from "../TrackCard";
+import styles from "./index.module.css";
 
 const Tracks = ({ tracks, onSelectTrack, selectedTracks }) => {
 	function renderTrackCards() {

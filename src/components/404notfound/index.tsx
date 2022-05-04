@@ -1,4 +1,4 @@
-import styles from "./ErrorNotFound.module.css";
+import styles from "./index.module.css";
 
 const ErrorNotFound = () => {
 	return (

@@ -1,6 +1,6 @@
 import { convertDuration } from "../../functions/functions";
 import Card from "../UI/Card";
-import styles from "./TrackCard.module.css";
+import styles from "./index.module.css";
 import { Track } from "../../types/spotify";
 import { Artist } from "types/spotify";
 type TrackCardProps = {

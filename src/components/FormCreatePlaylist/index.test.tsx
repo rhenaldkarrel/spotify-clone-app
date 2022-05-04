@@ -1,6 +1,6 @@
 import { screen, render, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import FormCreatePlaylist from "./FormCreatePlaylist";
+import FormCreatePlaylist from ".";
 
 describe("Form Create Playlist", () => {
 	const onClose = jest.fn();

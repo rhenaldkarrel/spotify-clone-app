@@ -16,13 +16,13 @@ import { useTypedSelector, useTypedDispatch } from "hooks/typedReduxHooks";
 
 // Components
 import logo from "spotify-logo.png";
-import FormCreatePlaylist from "components/FormCreatePlaylist/FormCreatePlaylist";
-import SearchTracks from "components/SearchTracks/SearchTracks";
-import Navigation from "components/Navigation/Navigation";
-import Tracks from "components/Tracks/Tracks";
-import PreviewSelectedTracks from "components/PreviewSelectedTracks/PreviewSelectedTracks";
-import AlertSuccess from "components/AlertSuccess/AlertSuccess";
-import ErrorNotFound from "components/404notfound/ErrorNotFound";
+import FormCreatePlaylist from "components/FormCreatePlaylist";
+import SearchTracks from "components/SearchTracks";
+import Navigation from "components/Navigation";
+import Tracks from "components/Tracks";
+import PreviewSelectedTracks from "components/PreviewSelectedTracks";
+import AlertSuccess from "components/AlertSuccess";
+import ErrorNotFound from "components/404notfound";
 
 // Styling
 import styles from "./index.module.css";

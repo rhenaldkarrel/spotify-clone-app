@@ -1,7 +1,7 @@
 // Redux
 import { useTypedSelector } from "hooks/typedReduxHooks";
 
-import styles from "./Navigation.module.css";
+import styles from "./index.module.css";
 
 type NavigationProps = {
 	logo: string;
@@ -29,8 +29,9 @@ const Navigation = ({
 	return (
 		<nav>
 			<div className={styles.navContainer}>
-				<div className='nav-brand'>
+				<div className={styles.navBrand}>
 					<img src={logo} alt='Spotify Logo' />
+					<h2>Spotify Playlist Creator</h2>
 				</div>
 				<div className={styles.navList}>
 					<div className={styles.userInfo}>

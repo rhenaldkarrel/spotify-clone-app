@@ -1,6 +1,6 @@
 import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SearchTracks from "./SearchTracks";
+import SearchTracks from ".";
 
 describe("Search tracks form", () => {
 	const onSubmit = jest.fn();

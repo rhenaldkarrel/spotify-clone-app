@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./SearchTracks.module.css";
+import styles from "./index.module.css";
 
 type SearchTracksProps = {
 	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;

@@ -1,26 +1,18 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import TrackCard from "./TrackCard";
+import PreviewSelectedTracks from ".";
 import data from "mocks/data";
 
-describe("Track card", () => {
-	const view = () =>
-		render(
-			<TrackCard track={data} isSelected={false} onSelectTrack={() => {}} />
-		);
+describe("Preview Selected Tracks", () => {
+	const tracks = [data];
+	const view = () => render(<PreviewSelectedTracks selectedTracks={tracks} />);
 
 	afterEach(cleanup);
 
 	it("check if album image rendered", () => {
 		view();
-		const imgElement = screen.getByAltText(/Album/i);
+		const imgElement = screen.getByAltText(data.album.name);
 		expect(imgElement).toBeInTheDocument();
-	});
-
-	it("check if album image source is right", () => {
-		view();
-		const imgElement = screen.getByAltText(/Album/i);
-		expect(imgElement.getAttribute("src")).toBe(data.album.images[0].url);
 	});
 
 	it("check if track title rendered", () => {
@@ -35,9 +27,9 @@ describe("Track card", () => {
 		expect(artistNameElement).toBeInTheDocument();
 	});
 
-	it("check if album name rendered", () => {
-		view();
-		const albumNameElement = screen.getByText(data.album.name);
-		expect(albumNameElement).toBeInTheDocument();
+	// still error
+	it("should render one track only", () => {
+		const { queryAllByTestId } = view();
+		expect(queryAllByTestId(/prevTracks/i)).toHaveLength(1);
 	});
 });

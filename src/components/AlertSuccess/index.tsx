@@ -1,4 +1,4 @@
-import styles from "./AlertSuccess.module.css";
+import styles from "./index.module.css";
 import Card from "../UI/Card";
 
 type AlertSuccessProps = {
