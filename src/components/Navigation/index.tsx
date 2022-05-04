@@ -26,6 +26,21 @@ const Navigation = ({
 		(state) => state.auth.userInfo?.images[0].url
 	);
 
+	const handleSeeTracks = () => {
+		window.scrollTo({
+			top: document.body.scrollHeight,
+			left: 0,
+			behavior: "smooth",
+		});
+	};
+
+	const handleBackToSearch = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	};
+
 	return (
 		<nav>
 			<div className={styles.navContainer}>
@@ -44,6 +59,18 @@ const Navigation = ({
 							style={isDisplayed ? { display: "block" } : { display: "none" }}
 							onClick={modalShow}>
 							Create Playlist
+						</button>
+						<button
+							className={styles.btnSeeTracks}
+							style={isDisplayed ? { display: "block" } : { display: "none" }}
+							onClick={handleSeeTracks}>
+							See Tracks
+						</button>
+						<button
+							className={styles.btnBackToSearch}
+							style={isDisplayed ? { display: "block" } : { display: "none" }}
+							onClick={handleBackToSearch}>
+							Back To Search
 						</button>
 						<button
 							className={styles.btnDeselectAll}

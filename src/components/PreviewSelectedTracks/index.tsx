@@ -12,6 +12,7 @@ const PreviewSelectedTracks = ({ selectedTracks }: PrevSelectedTracksProps) => {
 			{selectedTracks.map((track: Track) => (
 				<Card
 					data-testid='prevTracks'
+					id='prevTracks'
 					className={styles.cardSelectedTracks}
 					key={track.id}>
 					<div className={styles.albumCover}>

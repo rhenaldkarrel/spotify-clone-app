@@ -47,22 +47,23 @@
 	width: 2rem;
 }
 
-.btnLogout,
-.btnCreate,
-.btnDeselectAll {
+.btnLogout {
 	padding: 1em 1.5em;
 	font-size: 0.75rem;
 }
 
-.btnCreate {
+.btnCreate,
+.btnSeeTracks,
+.btnBackToSearch,
+.btnDeselectAll {
 	background-color: hsl(var(--clr-primary));
 	color: hsl(var(--clr-text));
-	text-transform: uppercase;
 	letter-spacing: 2px;
 	border: none;
-	padding: 1em 2em;
+	padding: 0.88em 1em;
 	border-radius: 0.3rem;
 	cursor: pointer;
+	font-size: 0.88rem;
 }
 
 .btnLogout {
@@ -85,7 +86,6 @@
 .btnDeselectAll {
 	background-color: rgb(255, 59, 59);
 	color: hsl(var(--clr-text));
-	text-transform: uppercase;
 	letter-spacing: 2px;
 	border: none;
 	border-radius: 0.3rem;
@@ -103,7 +103,8 @@
 	}
 
 	.navList button {
-		padding: 0.75em;
+		padding: 0.75em 0.4em;
+		font-size: 0.75rem;
 	}
 }
 
