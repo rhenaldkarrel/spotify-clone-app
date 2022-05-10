@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
 // Configurations
-import { getTracks, createPlaylist } from "auth/api";
+import { getTracks, createPlaylist, getTopItems } from "libs/spotify/api";
 
 // Redux
 import { logout } from "store/authSlice";
@@ -12,7 +12,7 @@ import {
 	deselectTrack,
 	clearSelectedTracks,
 } from "store/tracksSlice";
-import { useTypedSelector, useTypedDispatch } from "hooks/typedReduxHooks";
+import { useTypedSelector, useTypedDispatch } from "libs/hooks/typedReduxHooks";
 
 // Components
 import logo from "spotify-logo.png";
@@ -50,12 +50,34 @@ const Home = () => {
 	const [show, setShow] = useState<boolean>(false);
 	const [showAlert, setShowAlert] = useState<boolean>(false);
 	const [showError, setShowError] = useState<boolean>(false);
+	const [scrolling, setScrolling] = useState<boolean>(false);
+
+	// Retrieve user's top items
+	useEffect(() => {
+		if (token && userInfo) {
+			getTopItems(token).then((tracks) => dispatch(setTracks(tracks)));
+		}
+	}, [token, userInfo, dispatch]);
 
 	// Handle Logout
 	const handleLogout = () => {
 		dispatch(logout());
 		history.push("/");
 	};
+
+	// track users scroll
+	useEffect(() => {
+		window.addEventListener("scroll", () => {
+			if (
+				window.innerHeight + window.scrollY >=
+				document.body.offsetHeight - 1
+			) {
+				setScrolling(true);
+			} else {
+				setScrolling(false);
+			}
+		});
+	}, []);
 
 	// Get data from API
 	const handleSearch = (e: React.FormEvent): void => {
@@ -117,6 +139,7 @@ const Home = () => {
 				modalShow={() => setShow(true)}
 				isDisplayed={selectedTracks.length > 0}
 				logout={handleLogout}
+				scrolling={scrolling}
 				handleReset={() => dispatch(clearSelectedTracks())}
 			/>
 			<FormCreatePlaylist

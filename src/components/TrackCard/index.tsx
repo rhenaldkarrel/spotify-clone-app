@@ -1,4 +1,4 @@
-import { convertDuration } from "../../functions/functions";
+import { convertDuration } from "libs/functions";
 import Card from "../UI/Card";
 import styles from "./index.module.css";
 import { Track } from "../../types/spotify";

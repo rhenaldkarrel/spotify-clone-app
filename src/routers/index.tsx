@@ -5,7 +5,7 @@ import {
 	Route,
 	Redirect,
 } from "react-router-dom";
-import { useTypedSelector } from "hooks/typedReduxHooks";
+import { useTypedSelector } from "libs/hooks/typedReduxHooks";
 
 // Components
 import Login from "pages/login";

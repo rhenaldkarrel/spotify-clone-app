@@ -1,4 +1,4 @@
-import { UserProfile } from "../types/spotify";
+import { UserProfile } from "../../types/spotify";
 
 // Spotify Authorization
 export const authSpotify = (): void => {
@@ -11,6 +11,7 @@ export const authSpotify = (): void => {
 			"user-read-private",
 			"playlist-modify-private",
 			"playlist-read-private",
+			"user-top-read",
 		],
 	};
 

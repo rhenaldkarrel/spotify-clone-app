@@ -1,5 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
-import { useTypedSelector } from "hooks/typedReduxHooks";
+import { useTypedSelector } from "libs/hooks/typedReduxHooks";
 
 const PrivateRouter = ({ ...routerProps }) => {
 	const isAuthenticated = useTypedSelector(

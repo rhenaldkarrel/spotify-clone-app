@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useHistory } from "react-router";
 
 // Authorization
-import { authSpotify, getUserInfo } from "auth/auth";
-import { getToken } from "functions/functions";
+import { authSpotify, getUserInfo } from "libs/spotify/auth";
+import { getToken } from "libs/functions";
 
 // Redux
 import { login, storeUserInfo } from "store/authSlice";
-import { useTypedDispatch } from "hooks/typedReduxHooks";
+import { useTypedDispatch } from "libs/hooks/typedReduxHooks";
 
 // Components
 import logo from "spotify-logo.png";

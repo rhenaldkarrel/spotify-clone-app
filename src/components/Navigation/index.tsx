@@ -1,5 +1,5 @@
 // Redux
-import { useTypedSelector } from "hooks/typedReduxHooks";
+import { useTypedSelector } from "libs/hooks/typedReduxHooks";
 
 import styles from "./index.module.css";
 
@@ -9,6 +9,7 @@ type NavigationProps = {
 	isDisplayed: boolean;
 	logout: () => void;
 	handleReset: () => void;
+	scrolling: boolean;
 };
 
 const Navigation = ({
@@ -17,6 +18,7 @@ const Navigation = ({
 	logout,
 	isDisplayed,
 	handleReset,
+	scrolling,
 }: NavigationProps) => {
 	// User Informations
 	const userName = useTypedSelector(
@@ -60,18 +62,24 @@ const Navigation = ({
 							onClick={modalShow}>
 							Create Playlist
 						</button>
-						<button
-							className={styles.btnSeeTracks}
-							style={isDisplayed ? { display: "block" } : { display: "none" }}
-							onClick={handleSeeTracks}>
-							See Tracks
-						</button>
-						<button
-							className={styles.btnBackToSearch}
-							style={isDisplayed ? { display: "block" } : { display: "none" }}
-							onClick={handleBackToSearch}>
-							Back To Search
-						</button>
+
+						{isDisplayed && (
+							<>
+								{scrolling ? (
+									<button
+										className={styles.btnBackToSearch}
+										onClick={handleBackToSearch}>
+										Back To Search
+									</button>
+								) : (
+									<button
+										className={styles.btnSeeTracks}
+										onClick={handleSeeTracks}>
+										See Tracks
+									</button>
+								)}
+							</>
+						)}
 						<button
 							className={styles.btnDeselectAll}
 							style={isDisplayed ? { display: "block" } : { display: "none" }}
