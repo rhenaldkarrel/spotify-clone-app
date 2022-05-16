@@ -1,107 +1,78 @@
 # Spotify Clone App by Rhenald Karrel
 
-## Features Highlight
+<hr />
 
-- **Hooks**: implemented a lifted state in the pages only
-- **Flex & Grid**: implemented a handmade grid and flex layouts.
-- **Responsive**: mobile-friendly but still need some improvement for Safari.
-- **TypeScript**: implemented TypeScript.
-- **Redux**: implemented state management store.
-- **Eslint**: clean code.
-- **Testing**: implemented unit tests and integration tests.
-- **MSW**: Implemented MSW for mocking API async call test in home page.
-- **PWA**: Implemented PWA.
-- **UI/UX**: Implemented quite good UI/UX but still need some improvement indeed.
-- **Creative stuffs**: Displayed user's basic information such as display name and picture.
-- **Folder Structure and Naming Conventions**: tried to be as readable and contextual as possible.
-- **API**: Search tracks, create playlist, and get user's profile.
+## Introduction
+
+### Features Highlight
+
+1. Show recommended tracks based on users' top items
+2. Search for tracks
+3. Create playlist
+4. Add tracks to your playlist
+5. See all of your playlist
+6. See tracks inside of your playlist
+7. See your account profile picture and display name
+8. Open tracks & playlist in Spotify with one click
+
+### Built With
+
+1. [Create React App](https://create-react-app.dev/) to initialize the project.
+2. Written in [Typescript](https://www.typescriptlang.org/)
+3. [React Redux](https://react-redux.js.org/) for state management
+4. [React Router](https://reactrouter.com/) for routing
+5. [Jest](https://jestjs.io/), for testing
+6. [MSW](https://mswjs.io/), for creating API mock
+7. Deployed on [Vercel](https://vercel.com/)
+
+### Technical Details
+
+1. Use redux to store token, user profile, and selected tracks data.
+2. Implements Spotify API for searching tracks, get users' top items tracks, creating playlist, adding tracks to playlist, getting all of your playlist, getting all contents of your playlist, and get your Spotify profile data.
+3. Use react router with private route for authentication verification.
+4. Implements several types for typescript.
+5. Create unit and integration test. Use MSW to test API calls.
 
 ## How To Use This App
 
-- Clone it
-- Go to Spotify developer dashboard
-- Create new app and adjust the configurations following the docs
-- Open the project in your IDE
-- Observe the .env.example file
-- Create a .env.local file, and then add your CLIENT ID from Spotify Developer Dashboard
-- Add the base url according to your need in the .env.local file
-- Run 'npm i && npm start'
+### Prerequisites
 
-P.S: I am using Spotify's implicit grant flow for the authentication.
+1. Spotify account (Free/Premium)
+2. Setting up Spotify Application in [Spotify Developer Dashboard ](https://developer.spotify.com/dashboard/applications)
+3. NodeJS installed in your machine
+4. Git
+
+### Installation
+
+1. Clone repo to your local machine. After it finished, open the folder and install project dependencies. You can do this from your command line/terminal :
+
+```bash
+# Clone this repository
+$ git clone https://github.com/irfan44/generasi-gigih-homework.git
+
+# Go to repository folder
+$ cd generasi-gigih-homework
+
+# Install dependencies
+$ npm i
+```
+
+2. Insert your spotify key to `REACT_APP_SPOTIFY_CLIENT_ID` and redirect to `http://localhost:3000/` for `REACT_APP_BASE_URL` in `.env` file. Make sure that you've added the redirect URL to your application in Spotify Developer Dashboard
+
+```bash
+# .env example
+REACT_APP_SPOTIFY_CLIENT_ID=9090asdasdczsda9a10ak12eqws12smx
+REACT_APP_BASE_URL=http://localhost:3000/
+```
+
+3. Run the app
+
+```bash
+$ npm start
+```
+
+4. Open `http://localhost:3000` to view the app in your browser
 
 ## Disclaimer
 
-Please let me know if there is anything I missed.:-)
-
-<hr />
-
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please let me know if there is anything I missed. :-)
